@@ -12,7 +12,30 @@ static host and it just works.
 
 ## Live Site
 
-- <https://libs.yinux.workers.dev/> (Cloudflare Pages)
+- <https://libs.yinux.workers.dev/> (Cloudflare Workers, static assets)
+
+> The `workers.dev` suffix means this runs on **Workers**, not Pages — Pages projects get a
+> `*.pages.dev` domain. The naming rule is `<worker-name>.<account-subdomain>.workers.dev`,
+> so this repo maps to worker `libs` under account subdomain `yinux`.
+
+## Redeploying the Live Site (Cloudflare Workers)
+
+Pushing to GitHub does **not** update the live site automatically. Run one deploy:
+
+```bash
+cd site
+npx wrangler@4 login      # first time only; browser OAuth, then persists
+bash deploy_cf.sh         # login check → size preflight → deploy
+bash deploy_cf.sh --check # preflight only, no deploy
+```
+
+- `name` in `wrangler.jsonc` must stay `"libs"`; changing it **creates a new Worker**
+  (`libs-xxx.yinux.workers.dev`) instead of updating the live one.
+- Upload scope is controlled by `.assetsignore`, which excludes `.git` (41 MB), build scripts and
+  READMEs — effective upload is roughly **362 files / 45 MB**.
+- Deploy logs land in `.wrangler/` (gitignored).
+- `workers.dev` is often unreachable from mainland China; deploys go through
+  `api.cloudflare.com` so they are unaffected — verify on mobile data.
 
 ## One-Click Deploy
 

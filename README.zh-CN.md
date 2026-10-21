@@ -10,7 +10,26 @@
 
 ## 在线访问
 
-- <https://libs.yinux.workers.dev/>（Cloudflare Pages）
+- <https://libs.yinux.workers.dev/>（Cloudflare Workers，静态资源）
+
+> 域名的 `workers.dev` 后缀说明这是 **Workers** 而非 Pages —— Pages 的默认域名是 `*.pages.dev`。
+> 命名规则为 `<worker名>.<账号子域>.workers.dev`，所以本项目对应 worker `libs`、账号子域 `yinux`。
+
+## 更新线上站点（Cloudflare Workers）
+
+改动推送到 GitHub 后，线上站点**不会自动更新**，需执行一次部署：
+
+```bash
+cd site
+npx wrangler@4 login      # 仅首次，浏览器授权后长期有效
+bash deploy_cf.sh         # 登录检查 → 预检体积 → 部署
+bash deploy_cf.sh --check # 只预检，不部署
+```
+
+- `wrangler.jsonc` 里 `name` 必须保持 `"libs"`，否则会**新建**一个 Worker（域名变成 `libs-xxx.yinux.workers.dev`），而不是更新线上那个。
+- 上传范围由 `.assetsignore` 控制：排除 `.git`（41 MB）、构建脚本与 README，实际上传约 **362 个文件 / 45 MB**。
+- 部署日志写在 `.wrangler/`（已 gitignore）。
+- 本机直连 `workers.dev` 常超时，属网络可达性问题；部署走 `api.cloudflare.com` 不受影响，验证建议用手机流量。
 
 ## 一键部署
 

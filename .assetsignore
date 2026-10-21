@@ -1,0 +1,38 @@
+# Cloudflare Workers 静态资源上传排除规则
+# ---------------------------------------------------------------
+# 放在 assets.directory（即仓库根）下，wrangler 部署时自动读取，
+# 语法与 .gitignore 一致。被列出的文件不会上传到 CDN。
+#
+# 目的：只上传真正需要对外服务的静态文件，把 .git（41 MB）与
+# 构建脚本挡在外面，避免浪费上传配额、也避免源码被公开访问。
+
+# ── Git 元数据（最大的一块，必须排除）──
+.git/
+.gitignore
+
+# ── wrangler 自身与本地缓存 ──
+wrangler.jsonc
+wrangler.toml
+.assetsignore
+.wrangler/
+__pycache__/
+*.pyc
+*.pyo
+
+# ── 本地构建与验收脚本，不对公网提供 ──
+build_books.py
+build_catalog.py
+patch_book_page.py
+serve.py
+verify_site.py
+deploy_cf.sh
+
+# ── 文档 ──
+README.md
+README.zh-CN.md
+
+# ── 系统垃圾与日志 ──
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log

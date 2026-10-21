@@ -1,0 +1,36 @@
+/**
+ * Cloudflare Workers 静态资源部署配置
+ * =====================================
+ *
+ * 线上地址：https://libs.yinux.workers.dev
+ *
+ * 命名规则是 <worker名>.<账号子域>.workers.dev，所以：
+ *   worker 名 = libs
+ *   账号子域  = yinux
+ *
+ * ⚠ 改动 name 不会"更新"线上站点，而是**新建**一个 Worker
+ *   （域名变成 libs-xxxx.yinux.workers.dev），旧站点保持原样。
+ *   要更新线上那个，name 必须保持 "libs"。
+ *
+ * 本仓库是纯静态站点，没有 Worker 脚本逻辑，因此不写 main 入口，
+ * 全部请求交给 assets 处理。上传范围由同目录的 .assetsignore 控制
+ * （排除 .git / 构建脚本 / 文档，详见该文件）。
+ *
+ * 部署：bash deploy_cf.sh
+ */
+
+{
+  "name": "libs",
+  "compatibility_date": "2026-10-22",
+
+  "assets": {
+    // 仓库根即站点根：index.html、404.html、books/、downloads/ 都在这一层
+    "directory": ".",
+
+    // 请求 /books/gann-stock-truth/ 时自动映射到该目录下的 index.html
+    "html_handling": "auto-trailing-slash",
+
+    // 未命中路径返回仓库里的 404.html，而不是 Workers 默认错误页
+    "not_found_handling": "404-page"
+  }
+}

@@ -6,6 +6,9 @@ __pycache__/
 # 本地预览/构建临时文件
 *.log
 
+# Cloudflare 部署日志与缓存
+.wrangler/
+
 # 系统垃圾
 .DS_Store
 Thumbs.db
