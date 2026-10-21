@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://yinuxy.github.io/Library-To-Distillation/sitemap.xml
+Sitemap: https://libs.yinux.workers.dev/sitemap.xml

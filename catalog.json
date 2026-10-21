@@ -4,7 +4,7 @@
     "name_en": "Distilled Library",
     "tagline": "把一本书，|拆到能用的粒度。",
     "description": "AI 辅助的书籍知识蒸馏成果库：每本书拆成精华命题、概念图谱、行动 SOP 与可检索图鉴，全部单文件离线可开。",
-    "base_url": "https://yinuxy.github.io/Library-To-Distillation"
+    "base_url": "https://libs.yinux.workers.dev"
   },
   "books": [
     {

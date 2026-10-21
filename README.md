@@ -12,7 +12,7 @@ static host and it just works.
 
 ## Live Site
 
-- GitHub Pages: <https://yinuxy.github.io/Library-To-Distillation/>
+- <https://libs.yinux.workers.dev/> (Cloudflare Pages)
 
 ## One-Click Deploy
 

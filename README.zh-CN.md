@@ -10,7 +10,7 @@
 
 ## 在线访问
 
-- GitHub Pages：<https://yinuxy.github.io/Library-To-Distillation/>
+- <https://libs.yinux.workers.dev/>（Cloudflare Pages）
 
 ## 一键部署
 
