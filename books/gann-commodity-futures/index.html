@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>江恩商品期货核心教程 · 蒸馏图鉴</title>
+<style>
+:root{--bg:#f7f8fb;--panel:#fff;--panel2:#f2f4f9;--line:#e2e6ef;--ink:#1b2233;--dim:#5d6880;--gold:#b8860b;--green:#1f8a5f;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,"Segoe UI","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);line-height:1.75}
+.wrap{max-width:1180px;margin:0 auto;padding:24px}
+header.hero{text-align:center;padding:52px 20px 38px;background:linear-gradient(160deg,#fff 0%,#eef1f8 100%);border-radius:18px;border:1px solid var(--line);margin-bottom:24px}
+header.hero .kicker{color:var(--gold);letter-spacing:4px;font-size:12px;margin-bottom:12px}
+header.hero h1{font-size:32px;font-weight:800;letter-spacing:1px}
+header.hero .sub{color:var(--dim);margin-top:12px;font-size:15px}
+header.hero .meta{color:var(--dim);margin-top:16px;font-size:13px}
+section{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:26px;margin-bottom:22px}
+h2.sec{font-size:21px;font-weight:700;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+h2.sec .dot{color:var(--gold);margin-right:8px}
+.metrics{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.metric{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:16px;text-align:center}
+.metric .mk{font-size:12px;color:var(--dim)}
+.metric .mv{font-size:24px;font-weight:800;margin:6px 0 2px;color:var(--green)}
+.metric .md{font-size:11px;color:var(--dim)}
+.pillars{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:18px}
+.pillar{background:var(--panel2);border-left:3px solid var(--gold);border-radius:10px;padding:16px}
+.pillar h4{font-size:15px;margin-bottom:6px}
+.pillar p{font-size:13px;color:var(--dim)}
+.models{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.mcard{background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:20px}
+.mhead{display:flex;align-items:baseline;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.mnum{color:var(--gold);font-weight:700;font-size:12px}
+.mhead h3{font-size:17px}
+.msub{color:var(--dim);font-size:12px;margin-left:auto}
+.mdef{font-size:14px;margin-bottom:8px}
+.mmech{font-size:13px;color:var(--dim);margin-bottom:10px}
+.manchor{font-size:12px;color:var(--gold)}
+.rgroup h4{font-size:15px;color:var(--gold);margin:16px 0 10px}
+.rlist{list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.rlist li{background:var(--panel2);border-radius:8px;padding:10px 14px;display:flex;gap:10px;font-size:13px}
+.rnum{color:var(--gold);font-weight:700;min-width:20px}
+.rname{font-weight:600;white-space:nowrap}
+.rdesc{color:var(--dim)}
+.path{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.pstep{background:var(--panel2);border-radius:14px;padding:18px;border-top:3px solid var(--gold)}
+.pday{color:var(--gold);font-weight:700;font-size:13px}
+.pstep p{font-size:13px;color:var(--dim);margin-top:6px}
+.mermaid{background:#fbfcfe;border:1px solid var(--line);border-radius:12px;padding:20px;overflow-x:auto}
+.mermaid svg{max-width:100%;height:auto}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.figcard{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:10px;margin:0}
+.figcard img{width:100%;display:block;border-radius:6px;background:#fff}
+.fch{display:block;color:var(--gold);font-size:12px;margin-bottom:4px}
+.fcap{color:var(--dim);font-size:12px}
+.footer{text-align:center;color:var(--dim);font-size:12px;padding:22px}
+.dim{color:var(--dim);font-size:13px}
+@media(max-width:820px){.metrics{grid-template-columns:repeat(2,1fr)}.models,.pillars,.path,.gallery,.rlist{grid-template-columns:1fr}}
+
+/* ---- 站点注入：返回书架（浮动
+<a class="backlib" href="../../index.html" title="返回书架" aria-label="返回书架">←</a>
+按钮） ---- */
+.backlib{position:fixed;top:14px;left:14px;z-index:9999;width:34px;height:34px;display:grid;
+  place-items:center;border-radius:50%;border:1px solid rgba(0,0,0,.10);background:rgba(255,255,255,.88);
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:#5d6880;font-size:15px;line-height:1;
+  text-decoration:none;box-shadow:0 2px 10px rgba(0,0,0,.07);transition:.18s}
+.backlib:hover{color:#1b2233;background:#fff;transform:translateX(-1px)}
+@media print{.backlib{display:none}}
+</style></head><body><div class="wrap">
+<header class="hero">
+<div class="kicker">KNOWLEDGE DISTILLATION ATLAS</div>
+<h1>江恩商品期货核心教程 · 蒸馏图鉴</h1>
+<div class="sub">一部源于江恩权威培训教程的期货交易秘籍</div>
+<div class="meta">威廉·D·江恩（William D. Gann） 著 ｜ 全球证券投资经典译丛 ｜ 原书 171,653 字 · 共 21 章</div>
+</header>
+
+<section><h2 class="sec"><span class="dot">◈</span>蒸馏质量指标</h2>
+<div class="metrics"><div class="metric"><div class="mk">DR 蒸馏比</div><div class="mv">3.0%</div><div class="md">M 档 1.5%~4%</div></div><div class="metric"><div class="mk">PC 命题覆盖率</div><div class="mv">1.00</div><div class="md">硬门 ≥ 0.95</div></div><div class="metric"><div class="mk">AR 锚点率</div><div class="mv">1.00</div><div class="md">硬门 ≥ 0.95</div></div><div class="metric"><div class="mk">SF 结构保真</div><div class="mv">0.99</div><div class="md">硬门 ≥ 0.85</div></div><div class="metric"><div class="mk">QS 质量分</div><div class="mv">100</div><div class="md">硬门 ≥ 95</div></div></div>
+<div class="pillars"><div class="pillar"><h4>支柱一 · 认知与资金前提</h4><p>职业化投机 · 资金十等分 · 交割月纪律｜把交易当职业，先算清能亏多少次，再谈能赚多少</p></div><div class="pillar"><h4>支柱二 · 双层趋势判据</h4><p>趋势线指标（次级）· 三日图（主趋势）｜次级反转看趋势线，主趋势反转只看三日图</p></div><div class="pillar"><h4>支柱三 · 29 条机械规则</h4><p>顶底买卖 · 第四次突破 · 7~10 日规则 · 金字塔加仓｜用固定阈值替代临场判断，触发即反手</p></div><div class="pillar"><h4>支柱四 · 时空坐标体系</h4><p>几何角度 · 时间正方 · 时间周期 · 主计算图表｜把价格放进时间坐标，用多图互证筛出高置信转折</p></div></div></section>
+
+<section><h2 class="sec"><span class="dot">◈</span>核心思维模型</h2>
+<div class="models"><article class="mcard"><div class="mhead"><span class="mnum">模型1</span><h3>双层趋势判据模型</h3><span class="msub">趋势线指标与三日图的分工</span></div><p class="mdef">用两套独立构造的趋势线分别刻画两个时间尺度的趋势：趋势线指标跟随每日更高的顶部与更高的底部移动，刻画次级趋势；三日图只在连续三日创出更高底部与更高顶部时才上移，刻画主趋势。</p><p class="mmech">次级趋势是主趋势的组成部分，但波动频率更高，易被单日噪音触发。若用同一套判据管理两个尺度，必然出现「战术信号推翻战略结论」的错误。江恩用两套阈值把它们隔开：趋势线被穿越 1 美分只说明次级趋势反转，三日图底部被跌破才说明主趋势反转。</p><div class="manchor">原书锚点：次级看趋势线，主趋势只看三日图（第2章·第2节）</div></article><article class="mcard"><div class="mhead"><span class="mnum">模型2</span><h3>29 条规则机械化模型</h3><span class="msub">把交易决策编译为固定阈值</span></div><p class="mdef">以 29 条编号规则覆盖建仓、加仓、止损、反手、离场全流程，每条规则均给出可量化的触发条件与阈值，使交易决策可被第三方复现。</p><p class="mmech">规则化的本质是把「判断」前置到规则设计阶段，把「执行」压缩为条件匹配。江恩的规则设计有三个特征：阈值极窄、方向唯一（触发即反手，不含观望）、条件复合（价格 + 收盘位置 + 时间天数）。三者共同压缩了临场裁量空间。</p><div class="manchor">原书锚点：顶底买卖、第四次突破、7~10 日、金字塔（第2章·第5节）</div></article><article class="mcard"><div class="mhead"><span class="mnum">模型3</span><h3>金字塔顺势加仓模型</h3><span class="msub">浮盈加码与止损同步上移</span></div><p class="mdef">在已建立浮盈且趋势未变的前提下，按固定价格间隔（谷物 5 美分、棉花 40~50 美分）分批同向加仓，同时将全仓止损同步上移至新的趋势线外侧，使加仓后整体风险不增加。</p><p class="mmech">加仓的资金来源是市场已给出的浮盈，而非原始本金。价格顺向移动 5 美分时，首笔浮盈已足以覆盖新增头寸的止损风险；止损同步上移后，即使全部头寸被止损，账户仍为净盈利。这一结构把加仓从风险放大动作转化为风险对冲动作。江恩同时设禁令：绝不在双重顶底附近做二次加仓。</p><div class="manchor">原书锚点：每顺向 5 美分加一手，止损跟进趋势线（第2章·第5节）</div></article><article class="mcard"><div class="mhead"><span class="mnum">模型4</span><h3>几何角度线强弱模型</h3><span class="msub">用斜率把趋势强度可视化</span></div><p class="mdef">以时间单位为横轴、价格单位为纵轴，从重要顶底或「0」位出发按固定价格/时间比率绘制射线，用价格所处的射线档位判断趋势强弱，用射线被跌破的顺序判断下一支撑。</p><p class="mmech">角度线的本质是把「涨得多快」转化为可比较的斜率。每单位时间涨 8 点为极强，4 点为很强，2 点为强，1 点（45°）为平衡。价格跌破一条射线，意味着上涨速率已低于该档，必然向下一条更低速率的射线寻找支撑。这一「降档」机制使转弱成为渐进可观测的过程。</p><div class="manchor">原书锚点：8×1 &gt; 4×1 &gt; 2×1 &gt; 45° &gt; 熊市侧三条（第5章·第4节）</div></article><article class="mcard"><div class="mhead"><span class="mnum">模型5</span><h3>时间—价格正方模型</h3><span class="msub">涨幅与时长相等即为平衡点</span></div><p class="mdef">当价格上涨或下跌的点数，等于其运行的日、周或月数时，时间与价格达成正方，趋势处于平衡状态，最容易发生转折。三种正方分别以极限高低点幅度、极限低点、极限高点为基准。</p><p class="mmech">正方模型的深层假设是：市场运动存在速率守恒。一段行情以每单位时间 1 点的速率推进时，时间与价格同步增长，形成 45° 线；当价格偏离过远，就必须通过横盘或反向运动回到平衡。因此正方点不是神秘数字，而是速率回归的力学位置。江恩用 52×52、144、360 等正方网格标定这些位置。</p><div class="manchor">原书锚点：点数 = 时间数，三种正方对应幅度、低点、高点（第6章·第1节）</div></article><article class="mcard"><div class="mhead"><span class="mnum">模型6</span><h3>时间周期共振模型</h3><span class="msub">「12」的倍数与长短周期叠加</span></div><p class="mdef">以「12」及其倍数为主轴，叠加 90/84/60/49/45/30/20 年长周期与 13/10/7/5/3 年次级周期，当多个周期在同一时间窗口重合时，转折概率显著上升。</p><p class="mmech">单一周期的转折信号误报率高，因为市场同时受多个尺度的节律支配。江恩的做法是构建周期谱系，要求长短周期在同一窗口共振。他还引入「空转时间」概念：时间也会像机械一样存在缓冲，需容忍 1~3 个单位的误差。共振加缓冲，构成了对周期方法最常见的两种误用（单周期决策、过度精确）的修正。</p><div class="manchor">原书锚点：主要转折在第 12 的倍数月，长短周期共振（第7章·第1节）</div></article><article class="mcard"><div class="mhead"><span class="mnum">模型7</span><h3>主计算图表多图互证模型</h3><span class="msub">144 主方图与 12/9/六边形/360 圆图</span></div><p class="mdef">以 144 主方图为核心，配合 12 主图、9 方图、六边形图与 360° 圆图，四种独立构造方式分别给出阻力位与时间位，取交集作为高置信转折区。</p><p class="mmech">四种图表的构造逻辑彼此独立：144 主方图基于 12 的平方与 9 等分；9 方图基于奇数平方的螺旋扩张；六边形图基于每圈递增 6 的环状扩张；360° 圆图基于圆的多重等分。独立方法给出相同结论，等价于多次独立测量相互验证，可显著降低单一方法的系统性偏差。这与现代量化中的「多因子交叉验证」在逻辑上</p><div class="manchor">原书锚点：四种独立图表指向同一价位与时间（第12章、第17章）</div></article></div></section>
+
+<section><h2 class="sec"><span class="dot">◈</span>核心规则速查</h2>
+<section class="rgroup"><h4>类别一 · 资金与合约纪律</h4><ul class="rlist"><li><span class="rnum">1</span><span class="rname">本金十等分</span><span class="rdesc">单次动用 ≤ 本金 1/10；连亏三次后降为单位的一半</span></li><li><span class="rnum">2</span><span class="rname">保证金匹配</span><span class="rdesc">小麦 50~70 美分 → 750 美元/5000 蒲式耳；棉花 &lt;30 美分 → 1500 美元/100 包</span></li><li><span class="rnum">3</span><span class="rname">交割月回避</span><span class="rdesc">4/30 前清空 5 月小麦；7 月不做 7 月合约</span></li><li><span class="rnum">4</span><span class="rname">止损上限</span><span class="rdesc">谷物单次 ≤ 5 美分；棉花 ≤ 30 美分</span></li></ul></section><section class="rgroup"><h4>类别二 · 建仓与反手规则</h4><ul class="rlist"><li><span class="rnum">5</span><span class="rname">规则1 趋势指标</span><span class="rdesc">止损设于最后趋势线底部下 1 美分，触发即反手</span></li><li><span class="rnum">6</span><span class="rname">规则2 双底/三底买入</span><span class="rdesc">止损 1~3 美分；第三底风险 ≤ 1 美分，破位反手做空</span></li><li><span class="rnum">7</span><span class="rname">规则3 双顶/三顶卖出</span><span class="rdesc">止损 1~3 美分；突破第三顶反手做多</span></li><li><span class="rnum">8</span><span class="rname">规则4 第四次突破</span><span class="rdesc">第四次到达同一水平即变换操作并加仓</span></li><li><span class="rnum">9</span><span class="rname">规则7 7~10 日规则</span><span class="rdesc">连跌/连涨 7~10 日，止损移至每日顶/底外 1 美分</span></li></ul></section><section class="rgroup"><h4>类别三 · 加仓与趋势确认</h4><ul class="rlist"><li><span class="rnum">10</span><span class="rname">规则8~11 金字塔</span><span class="rdesc">每顺向 5 美分加一手；累计 5 手时挂 6 手反向止损</span></li><li><span class="rnum">11</span><span class="rname">规则13 加仓禁令</span><span class="rdesc">双重顶底附近禁止二次加仓，须等突破整理区</span></li><li><span class="rnum">12</span><span class="rname">规则15 主趋势判据</span><span class="rdesc">仅三日图底部被跌破/顶部被突破才确认主趋势反转</span></li><li><span class="rnum">13</span><span class="rname">规则19 完全 3 美分</span><span class="rdesc">自低点反弹满 3 美分（整数点位）才确认次级反转</span></li></ul></section><section class="rgroup"><h4>类别四 · 信号日与阻力位</h4><ul class="rlist"><li><span class="rnum">14</span><span class="rname">规则21 顶部信号日</span><span class="rdesc">收盘近低点/低于中点/低于开盘 → 做空，止损当日高点上 1 美分</span></li><li><span class="rnum">15</span><span class="rname">规则22 底部信号日</span><span class="rdesc">收盘高于开盘/高于中点/收于最高 → 平空反多</span></li><li><span class="rnum">16</span><span class="rname">阻力位八等分</span><span class="rdesc">波动幅度 1/8 分位为买卖点，1/3、2/3 分位更强</span></li><li><span class="rnum">17</span><span class="rname">半幅回撤</span><span class="rdesc">跌破幅度 1/2 分位后，通常跌至最高卖价的一半</span></li><li><span class="rnum">18</span><span class="rname">空转缓冲</span><span class="rdesc">超越角度线 2~2.5 美分为常态，超 3 美分才确认突破</span></li></ul></section></section>
+
+<section><h2 class="sec"><span class="dot">◈</span>进阶路径</h2>
+<div class="path"><div class="pstep"><span class="pday">第一阶段 第 1~7 天：规则内化与历史复盘</span><p>暂停实盘；手绘 3 个品种的日、三日、周图表各 20 页；用 29 条规则逐条复盘中过去 12 个月的交割单，标注违规点。</p></div><div class="pstep"><span class="pday">第二阶段 第 8~14 天：最小仓位刻意练习</span><p>以最小可交易单位实盘，严格执行「入场即挂止损」，每日记录角度档位与时间窗，体验 3 次真实止损触发。</p></div><div class="pstep"><span class="pday">第三阶段 第 15~21 天：金字塔与多图互证</span><p>在浮盈头寸上执行一次完整金字塔加仓并上移止损；用 144 主方图与 9 方图对同一品种做一次交集验证，记录命中率。</p></div></div></section>
+
+<section><h2 class="sec"><span class="dot">◈</span>概念网络图谱（33 节点）</h2>
+<div class="mermaid">
+graph TD
+  ROOT((时间与价格平衡)) ==> C01[投机职业化]
+  ROOT ==> C02[时间优先原则]
+  C01 --> C03[资金十等分]
+  C01 --> C04[交割月纪律]
+  C01 --> C05[人性弱点防御]
+  C02 --> C06[几何角度线]
+  C06 ==> C07[/45度线/]
+  C07 --> C08[/2×1线/]
+  C08 --> C09[/4×1线/]
+  C09 --> C10[/8×1线/]
+  C02 ==> C11[时间价格正方]
+  C11 --> C12{幅度正方}
+  C11 --> C13{低点正方}
+  C11 --> C14{高点正方}
+  C02 ==> C15[时间周期谱系]
+  C15 --> C16[长周期90至20年]
+  C15 --> C17[次周期13至1年]
+  C15 --> C18{空转缓冲}
+  C01 ==> C19[双层趋势判据]
+  C19 --> C20[/趋势线指标/]
+  C19 --> C21[/三日图/]
+  C20 --> C22{次级趋势反转}
+  C21 --> C23{主趋势反转}
+  C22 --> C24[29条机械规则]
+  C23 --> C24
+  C24 --> C25[/金字塔加仓/]
+  C24 --> C26[/反手规则/]
+  C24 --> C27[[亏损摊平]]
+  C24 --> C28[[无止损裸单]]
+  C07 --> C29[主计算图表]
+  C29 --> C30[144主方图]
+  C29 --> C31[9方图与六边形]
+  C29 --> C32{多图互证}
+
+</div></section>
+
+<section><h2 class="sec"><span class="dot">◈</span>核心图表索引</h2>
+<div class="gallery"><figure class="figcard"><img loading="lazy" src="figures/Image00011.jpg" alt="日、周、月高低点图表与趋势线指标的绘制样例"><figcaption><span class="fch">第2章·第2节</span><span class="fcap">日、周、月高低点图表与趋势线指标的绘制样例</span></figcaption></figure><figure class="figcard"><img loading="lazy" src="figures/Image00013.jpg" alt="三日图与主趋势指标的构造与转向标注"><figcaption><span class="fch">第2章·第6节</span><span class="fcap">三日图与主趋势指标的构造与转向标注</span></figcaption></figure><figure class="figcard"><img loading="lazy" src="figures/Image00018.jpg" alt="45°、2×1、4×1、8×1 及其熊市对应线的绘制样例"><figcaption><span class="fch">第5章·第3节</span><span class="fcap">45°、2×1、4×1、8×1 及其熊市对应线的绘制样例</span></figcaption></figure><figure class="figcard"><img loading="lazy" src="figures/Image00033.jpg" alt="时间与价格成正方、52×52 与 144 方格的叠加示例"><figcaption><span class="fch">第6章·第1节</span><span class="fcap">时间与价格成正方、52×52 与 144 方格的叠加示例</span></figcaption></figure><figure class="figcard"><img loading="lazy" src="figures/Image00039.jpg" alt="棉花趋势指标图表与 20 美分空间图表"><figcaption><span class="fch">第9章·第2节</span><span class="fcap">棉花趋势指标图表与 20 美分空间图表</span></figcaption></figure><figure class="figcard"><img loading="lazy" src="figures/Image00041.jpg" alt="鸡蛋 360° 主图、12 方图与价格阻力位标注"><figcaption><span class="fch">第11章·第2节</span><span class="fcap">鸡蛋 360° 主图、12 方图与价格阻力位标注</span></figcaption></figure><figure class="figcard"><img loading="lazy" src="figures/Image00042.jpg" alt="144 主方图、主计算表叠加与周周期应用"><figcaption><span class="fch">第12章·第1节</span><span class="fcap">144 主方图、主计算表叠加与周周期应用</span></figcaption></figure><figure class="figcard"><img loading="lazy" src="figures/Image00058.jpg" alt="12 主图、9 方图、六边形图、360° 圆图与螺旋图"><figcaption><span class="fch">第17章·第1节</span><span class="fcap">12 主图、9 方图、六边形图、360° 圆图与螺旋图</span></figcaption></figure><figure class="figcard"><img loading="lazy" src="figures/Image00059.jpg" alt="原书插图第 9 幅（详见正文对应章节）"><figcaption><span class="fch">原书插图</span><span class="fcap">原书插图第 9 幅（详见正文对应章节）</span></figcaption></figure><figure class="figcard"><img loading="lazy" src="figures/Image00062.jpg" alt="原书插图第 10 幅（详见正文对应章节）"><figcaption><span class="fch">原书插图</span><span class="fcap">原书插图第 10 幅（详见正文对应章节）</span></figcaption></figure></div></section>
+
+<div class="footer">本图鉴由 AI 辅助生成，是对原书的知识蒸馏成果，非原书替代品 · 知识截止 2026-10<br>原书著作权归作者与出版方所有</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>
+if(window.mermaid){mermaid.initialize({startOnLoad:true,theme:'default',securityLevel:'loose'});mermaid.run({querySelector:'.mermaid'});}
+</script>
+</body></html>

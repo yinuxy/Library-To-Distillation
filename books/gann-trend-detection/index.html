@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>江恩股票走势探测 · 蒸馏图鉴</title>
+<style>
+:root{--bg:#f7f8fb;--panel:#fff;--panel2:#f2f4f9;--line:#e2e6ef;--ink:#1b2233;--dim:#5d6880;--gold:#b8860b;--green:#1f8a5f;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,"Segoe UI","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);line-height:1.75}
+.wrap{max-width:1180px;margin:0 auto;padding:24px}
+header.hero{text-align:center;padding:52px 20px 38px;background:linear-gradient(160deg,#fff 0%,#eef1f8 100%);border-radius:18px;border:1px solid var(--line);margin-bottom:24px}
+header.hero .kicker{color:var(--gold);letter-spacing:4px;font-size:12px;margin-bottom:12px}
+header.hero h1{font-size:32px;font-weight:800;letter-spacing:1px}
+header.hero .sub{color:var(--dim);margin-top:12px;font-size:15px}
+header.hero .meta{color:var(--dim);margin-top:16px;font-size:13px}
+section{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:26px;margin-bottom:22px}
+h2.sec{font-size:21px;font-weight:700;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+h2.sec .dot{color:var(--gold);margin-right:8px}
+.metrics{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.metric{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:16px;text-align:center}
+.metric .mk{font-size:12px;color:var(--dim)}
+.metric .mv{font-size:24px;font-weight:800;margin:6px 0 2px;color:var(--green)}
+.metric .md{font-size:11px;color:var(--dim)}
+.pillars{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:18px}
+.pillar{background:var(--panel2);border-left:3px solid var(--gold);border-radius:10px;padding:16px}
+.pillar h4{font-size:15px;margin-bottom:6px}
+.pillar p{font-size:13px;color:var(--dim)}
+.models{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.mcard{background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:20px}
+.mhead{display:flex;align-items:baseline;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.mnum{color:var(--gold);font-weight:700;font-size:12px}
+.mhead h3{font-size:17px}
+.msub{color:var(--dim);font-size:12px;margin-left:auto}
+.mdef{font-size:14px;margin-bottom:8px}
+.mmech{font-size:13px;color:var(--dim);margin-bottom:10px}
+.manchor{font-size:12px;color:var(--gold)}
+.rgroup h4{font-size:15px;color:var(--gold);margin:16px 0 10px}
+.rlist{list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.rlist li{background:var(--panel2);border-radius:8px;padding:10px 14px;display:flex;gap:10px;font-size:13px}
+.rnum{color:var(--gold);font-weight:700;min-width:20px}
+.rname{font-weight:600;white-space:nowrap}
+.rdesc{color:var(--dim)}
+.path{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.pstep{background:var(--panel2);border-radius:14px;padding:18px;border-top:3px solid var(--gold)}
+.pday{color:var(--gold);font-weight:700;font-size:13px}
+.pstep p{font-size:13px;color:var(--dim);margin-top:6px}
+.mermaid{background:#fbfcfe;border:1px solid var(--line);border-radius:12px;padding:20px;overflow-x:auto}
+.mermaid svg{max-width:100%;height:auto}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.figcard{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:10px;margin:0}
+.figcard img{width:100%;display:block;border-radius:6px;background:#fff}
+.fch{display:block;color:var(--gold);font-size:12px;margin-bottom:4px}
+.fcap{color:var(--dim);font-size:12px}
+.footer{text-align:center;color:var(--dim);font-size:12px;padding:22px}
+.dim{color:var(--dim);font-size:13px}
+@media(max-width:820px){.metrics{grid-template-columns:repeat(2,1fr)}.models,.pillars,.path,.gallery,.rlist{grid-template-columns:1fr}}
+
+/* ---- 站点注入：返回书架（浮动
+<a class="backlib" href="../../index.html" title="返回书架" aria-label="返回书架">←</a>
+按钮） ---- */
+.backlib{position:fixed;top:14px;left:14px;z-index:9999;width:34px;height:34px;display:grid;
+  place-items:center;border-radius:50%;border:1px solid rgba(0,0,0,.10);background:rgba(255,255,255,.88);
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:#5d6880;font-size:15px;line-height:1;
+  text-decoration:none;box-shadow:0 2px 10px rgba(0,0,0,.07);transition:.18s}
+.backlib:hover{color:#1b2233;background:#fff;transform:translateX(-1px)}
+@media print{.backlib{display:none}}
+</style></head><body><div class="wrap">
+<header class="hero">
+<div class="kicker">KNOWLEDGE DISTILLATION ATLAS</div>
+<h1>江恩股票走势探测 · 蒸馏图鉴</h1>
+<div class="sub">用三图判势、三点确认与量能验证捕捉个股趋势</div>
+<div class="meta">威廉·D·江恩（William D. Gann） 著 ｜ 江恩股票经典系列 ｜ 原书 71,729 字 · 共 8 章</div>
+</header>
+
+<section><h2 class="sec"><span class="dot">◈</span>蒸馏质量指标</h2>
+<div class="metrics"><div class="metric"><div class="mk">DR 蒸馏比</div><div class="mv">3.6%</div><div class="md">M 档 1.5%~4%</div></div><div class="metric"><div class="mk">PC 命题覆盖率</div><div class="mv">1.00</div><div class="md">硬门 ≥ 0.95</div></div><div class="metric"><div class="mk">AR 锚点率</div><div class="mv">1.00</div><div class="md">硬门 ≥ 0.95</div></div><div class="metric"><div class="mk">SF 结构保真</div><div class="mv">0.99</div><div class="md">硬门 ≥ 0.85</div></div><div class="metric"><div class="mk">QS 质量分</div><div class="mv">100</div><div class="md">硬门 ≥ 95</div></div></div>
+<div class="pillars"><div class="pillar"><h4>支柱一 · 资质与资金</h4><p>五项资质 · 止损单｜先有纪律，再谈效率</p></div><div class="pillar"><h4>支柱二 · 三图分工</h4><p>月线 · 周线 · 日线｜尺度与结论必须匹配</p></div><div class="pillar"><h4>支柱三 · 三点确认</h4><p>突破三点 · 跌破三点｜突破须穿过缓冲带</p></div><div class="pillar"><h4>支柱四 · 量能与周期</h4><p>量能四法则 · 牛熊时长｜量能验证价格</p></div></div></section>
+
+<section><h2 class="sec"><span class="dot">◈</span>核心思维模型</h2>
+<div class="models"><article class="mcard"><div class="mhead"><span class="mnum">模型1</span><h3>三图分工模型</h3><span class="msub">月线定方向、周线定波段、日线定时机</span></div><p class="mdef">用月、周、日三级图表分别承担方向、波段与时机三类决策，层级分明、互不越权。</p><p class="mmech">不同尺度记录不同量级的供求博弈。月线过滤日内噪音，只保留大资金建仓痕迹；周线呈现波段节奏与止损位；日线提供入场时机。用日线判方向会把回调误读为反转；用月线找买点则永远错过窗口。</p><div class="manchor">原书锚点：月线定方向、周线定波段、日线定时机（第5章·研判趋势的最佳工具）</div></article><article class="mcard"><div class="mhead"><span class="mnum">模型2</span><h3>三点确认模型</h3><span class="msub">突破与跌破的缓冲带</span></div><p class="mdef">突破或跌破必须以超过前高前低三个点为确认阈值；确认后回抽跌破前高下方三点，则突破失效。</p><p class="mmech">关键价位聚集大量止损单与挂单，价格常短暂假突破以触发这些订单。三点缓冲带把「触及」与「站稳」区分开：只有穿过且回抽不破，才说明买方真正接管该价位。该阈值同时给出挂单位置，风险被限定在六点内。</p><div class="manchor">原书锚点：突破或跌破超三个点才算有效（第5章·在什么位置买卖股票）</div></article><article class="mcard"><div class="mhead"><span class="mnum">模型3</span><h3>底顶形态买卖模型</h3><span class="msub">单底、双底、三底及其镜像</span></div><p class="mdef">在单底、双底、三重底形成时买入，在单顶、双顶、三重顶形成时卖出，止损统一设在形态外侧不超过三点。</p><p class="mmech">价格在同一水平反复获得支撑，说明该价位存在稳定买盘；反复受阻则说明存在稳定卖压。第二、三次测试更可靠，因为每次测试都在消耗对方弹药。第四次到达同一水平时，江恩的经验是趋势通常选择突破而非折返。</p><div class="manchor">原书锚点：双底三底买入、双顶三顶卖出（第5章·在什么位置买卖股票）</div></article><article class="mcard"><div class="mhead"><span class="mnum">模型4</span><h3>量能与强弱模型</h3><span class="msub">顶部放量、底部缩量、时点差辨强弱</span></div><p class="mdef">以顶部放量、底部缩量、反弹缩量验证价格结论；以个股相对大盘见顶见底的时点差判断强弱。</p><p class="mmech">成交量记录双方投入的兵力：顶部放量说明卖方大量出货，底部缩量说明卖方已无筹码；缩量反弹说明买方不愿追高。时点差暴露主力意图：提前见顶说明已派发完毕，提前见底说明正在吸筹。</p><div class="manchor">原书锚点：量能四法则验证顶底，时点差辨领涨领跌（第6章·成交量）</div></article><article class="mcard"><div class="mhead"><span class="mnum">模型5</span><h3>七法则执行模型</h3><span class="msub">资金、止损、买卖点、加仓、转换</span></div><p class="mdef">以七条法则覆盖资金规模、止损、买入点、卖空点、金字塔加仓、多空转换与量能验证。</p><p class="mmech">设计逻辑是「先定风险，再定方向，最后定节奏」。第一、二条定资金与止损，第三、四条把买卖点绑定在形态与三点突破，第五条按价格区间调整加仓间隔，第六条处理反转切换，第七条用量能验证。七条互相咬合，缺一失效。</p><div class="manchor">原书锚点：七条实用法则构成完整执行闭环（第7章·实用交易方法）</div></article></div></section>
+
+<section><h2 class="sec"><span class="dot">◈</span>核心规则速查</h2>
+<section class="rgroup"><h4>类别一 · 资金与止损</h4><ul class="rlist"><li><span class="rnum">1</span><span class="rname">资金规模</span><span class="rdesc">100 股至少 3000 美元，单次≤1/10</span></li><li><span class="rnum">2</span><span class="rname">止损幅度</span><span class="rdesc">买价下方 1~3 点，风险≤5 点</span></li><li><span class="rnum">3</span><span class="rname">盈利保护</span><span class="rdesc">获利丰厚后止损可放宽至每日高点下 5 点</span></li></ul></section><section class="rgroup"><h4>类别二 · 买入法则</h4><ul class="rlist"><li><span class="rnum">4</span><span class="rname">双底三底买入</span><span class="rdesc">底部下方 1~3 点挂止损</span></li><li><span class="rnum">5</span><span class="rname">三点突破买入</span><span class="rdesc">站上前高三点回抽不破即买</span></li><li><span class="rnum">6</span><span class="rname">历史高点突破</span><span class="rdesc">突破数年前顶部三点后买入最安全</span></li><li><span class="rnum">7</span><span class="rname">牛市回调买入</span><span class="rdesc">回调两三周结束、两三日渐稳时买入</span></li></ul></section><section class="rgroup"><h4>类别三 · 卖出与做空</h4><ul class="rlist"><li><span class="rnum">8</span><span class="rname">双顶三顶卖出</span><span class="rdesc">顶部上方 1~3 点挂止损</span></li><li><span class="rnum">9</span><span class="rname">跌破前低卖空</span><span class="rdesc">跌破三点后反弹卖出，止损前低+3 点</span></li><li><span class="rnum">10</span><span class="rname">熊市反弹卖空</span><span class="rdesc">反弹两三周将尽时卖空</span></li></ul></section><section class="rgroup"><h4>类别四 · 持仓与加仓</h4><ul class="rlist"><li><span class="rnum">11</span><span class="rname">三日浮亏法则</span><span class="rdesc">连续三日收盘浮亏即平仓</span></li><li><span class="rnum">12</span><span class="rname">金字塔加仓</span><span class="rdesc">20~50 美元每 5 点，80~200 每 10 点</span></li><li><span class="rnum">13</span><span class="rname">禁摊薄亏损</span><span class="rdesc">严禁亏损加仓摊低成本</span></li><li><span class="rnum">14</span><span class="rname">多空转换</span><span class="rdesc">止损触发即反手</span></li></ul></section></section>
+
+<section><h2 class="sec"><span class="dot">◈</span>进阶路径</h2>
+<div class="path"><div class="pstep"><span class="pday">第一阶段 第 1~7 天：三图与三点内化</span><p>为 10 只标的各绘三张高低点图；回测过去两年所有突破信号，统计有效与假突破比例。</p></div><div class="pstep"><span class="pday">第二阶段 第 8~14 天：最小仓位执行</span><p>以 100 股实盘，入场即挂 1~3 点止损，每日记录三日浮盈状态。</p></div><div class="pstep"><span class="pday">第三阶段 第 15~21 天：加仓与量能验证</span><p>执行一次完整金字塔加仓；对三只标的做量能核对并记录命中率。</p></div></div></section>
+
+<section><h2 class="sec"><span class="dot">◈</span>概念网络图谱（26 节点）</h2>
+<div class="mermaid">
+graph TD
+  ROOT((供求决定趋势)) ==> C01[五项资质]
+  ROOT ==> C02[三图分工]
+  C01 --> C03[止损单底线]
+  C02 ==> C04[/月线定方向/]
+  C04 --> C05[/周线定波段/]
+  C05 --> C06[/日线定时机/]
+  C02 ==> C07[三点确认]
+  C07 --> C08{有效突破}
+  C07 --> C09{有效跌破}
+  ROOT ==> C10[量能四法则]
+  C10 --> C11{顶部放量}
+  C10 --> C12{底部缩量}
+  C10 --> C13{反弹缩量}
+  ROOT ==> C14[强弱时点差]
+  C14 --> C15[领涨股]
+  C14 --> C16[领跌股]
+  C01 ==> C17[周期重演]
+  C17 --> C18[牛熊时长]
+  C07 --> C19[七法则执行]
+  C19 --> C20[/金字塔加仓/]
+  C19 --> C21[/三日浮亏法则/]
+  C19 --> C22[[摊薄亏损]]
+  C19 --> C23[[无止损裸单]]
+  C03 -.->|对立| C23
+  C20 -.->|对立| C22
+  C11 --> C24[顶底判定]
+  C24 ==> C25[趋势改变确认]
+
+</div></section>
+
+<section><h2 class="sec"><span class="dot">◈</span>核心图表索引</h2>
+<div class="gallery"><figure class="figcard"><img loading="lazy" src="figures/00027.jpeg" alt="原书插图第 1 幅"><figcaption><span class="fch">原书插图</span><span class="fcap">原书插图第 1 幅</span></figcaption></figure><figure class="figcard"><img loading="lazy" src="figures/00030.jpeg" alt="原书插图第 2 幅"><figcaption><span class="fch">原书插图</span><span class="fcap">原书插图第 2 幅</span></figcaption></figure><figure class="figcard"><img loading="lazy" src="figures/00031.jpeg" alt="原书插图第 3 幅"><figcaption><span class="fch">原书插图</span><span class="fcap">原书插图第 3 幅</span></figcaption></figure><figure class="figcard"><img loading="lazy" src="figures/00048.jpeg" alt="原书插图第 4 幅"><figcaption><span class="fch">原书插图</span><span class="fcap">原书插图第 4 幅</span></figcaption></figure><figure class="figcard"><img loading="lazy" src="figures/00050.jpeg" alt="原书插图第 5 幅"><figcaption><span class="fch">原书插图</span><span class="fcap">原书插图第 5 幅</span></figcaption></figure><figure class="figcard"><img loading="lazy" src="figures/00051.jpeg" alt="原书插图第 6 幅"><figcaption><span class="fch">原书插图</span><span class="fcap">原书插图第 6 幅</span></figcaption></figure><figure class="figcard"><img loading="lazy" src="figures/00056.jpeg" alt="原书插图第 7 幅"><figcaption><span class="fch">原书插图</span><span class="fcap">原书插图第 7 幅</span></figcaption></figure><figure class="figcard"><img loading="lazy" src="figures/00062.jpeg" alt="原书插图第 8 幅"><figcaption><span class="fch">原书插图</span><span class="fcap">原书插图第 8 幅</span></figcaption></figure><figure class="figcard"><img loading="lazy" src="figures/00065.jpeg" alt="原书插图第 9 幅"><figcaption><span class="fch">原书插图</span><span class="fcap">原书插图第 9 幅</span></figcaption></figure><figure class="figcard"><img loading="lazy" src="figures/00072.jpeg" alt="原书插图第 10 幅"><figcaption><span class="fch">原书插图</span><span class="fcap">原书插图第 10 幅</span></figcaption></figure></div></section>
+
+<div class="footer">本图鉴由 AI 辅助生成，是对原书的知识蒸馏成果，非原书替代品 · 知识截止 2026-10<br>原书著作权归作者与出版方所有</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>
+if(window.mermaid){mermaid.initialize({startOnLoad:true,theme:'default',securityLevel:'loose'});mermaid.run({querySelector:'.mermaid'});}
+</script>
+</body></html>

@@ -2,4 +2,12 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://libs.yinux.workers.dev/</loc><changefreq>monthly</changefreq><priority>1.0</priority></url>
   <url><loc>https://libs.yinux.workers.dev/books/japanese-candlestick/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://libs.yinux.workers.dev/books/gann-commodity-futures/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://libs.yinux.workers.dev/books/gann-stock-truth/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://libs.yinux.workers.dev/books/gann-trend-theory/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://libs.yinux.workers.dev/books/gann-investment-bible/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://libs.yinux.workers.dev/books/gann-trend-detection/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://libs.yinux.workers.dev/books/gann-trend-forecast/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://libs.yinux.workers.dev/books/gann-stock-selection/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://libs.yinux.workers.dev/books/elliott-wave/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
 </urlset>

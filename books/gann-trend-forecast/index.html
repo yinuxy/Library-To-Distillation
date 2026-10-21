@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>江恩趋势预测法 · 蒸馏图鉴</title>
+<style>
+:root{--bg:#f7f8fb;--panel:#fff;--panel2:#f2f4f9;--line:#e2e6ef;--ink:#1b2233;--dim:#5d6880;--gold:#b8860b;--green:#1f8a5f;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,"Segoe UI","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);line-height:1.75}
+.wrap{max-width:1180px;margin:0 auto;padding:24px}
+header.hero{text-align:center;padding:52px 20px 38px;background:linear-gradient(160deg,#fff 0%,#eef1f8 100%);border-radius:18px;border:1px solid var(--line);margin-bottom:24px}
+header.hero .kicker{color:var(--gold);letter-spacing:4px;font-size:12px;margin-bottom:12px}
+header.hero h1{font-size:32px;font-weight:800;letter-spacing:1px}
+header.hero .sub{color:var(--dim);margin-top:12px;font-size:15px}
+header.hero .meta{color:var(--dim);margin-top:16px;font-size:13px}
+section{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:26px;margin-bottom:22px}
+h2.sec{font-size:21px;font-weight:700;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+h2.sec .dot{color:var(--gold);margin-right:8px}
+.metrics{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.metric{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:16px;text-align:center}
+.metric .mk{font-size:12px;color:var(--dim)}
+.metric .mv{font-size:24px;font-weight:800;margin:6px 0 2px;color:var(--green)}
+.metric .md{font-size:11px;color:var(--dim)}
+.pillars{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:18px}
+.pillar{background:var(--panel2);border-left:3px solid var(--gold);border-radius:10px;padding:16px}
+.pillar h4{font-size:15px;margin-bottom:6px}
+.pillar p{font-size:13px;color:var(--dim)}
+.models{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.mcard{background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:20px}
+.mhead{display:flex;align-items:baseline;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.mnum{color:var(--gold);font-weight:700;font-size:12px}
+.mhead h3{font-size:17px}
+.msub{color:var(--dim);font-size:12px;margin-left:auto}
+.mdef{font-size:14px;margin-bottom:8px}
+.mmech{font-size:13px;color:var(--dim);margin-bottom:10px}
+.manchor{font-size:12px;color:var(--gold)}
+.rgroup h4{font-size:15px;color:var(--gold);margin:16px 0 10px}
+.rlist{list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.rlist li{background:var(--panel2);border-radius:8px;padding:10px 14px;display:flex;gap:10px;font-size:13px}
+.rnum{color:var(--gold);font-weight:700;min-width:20px}
+.rname{font-weight:600;white-space:nowrap}
+.rdesc{color:var(--dim)}
+.path{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.pstep{background:var(--panel2);border-radius:14px;padding:18px;border-top:3px solid var(--gold)}
+.pday{color:var(--gold);font-weight:700;font-size:13px}
+.pstep p{font-size:13px;color:var(--dim);margin-top:6px}
+.mermaid{background:#fbfcfe;border:1px solid var(--line);border-radius:12px;padding:20px;overflow-x:auto}
+.mermaid svg{max-width:100%;height:auto}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.figcard{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:10px;margin:0}
+.figcard img{width:100%;display:block;border-radius:6px;background:#fff}
+.fch{display:block;color:var(--gold);font-size:12px;margin-bottom:4px}
+.fcap{color:var(--dim);font-size:12px}
+.footer{text-align:center;color:var(--dim);font-size:12px;padding:22px}
+.dim{color:var(--dim);font-size:13px}
+@media(max-width:820px){.metrics{grid-template-columns:repeat(2,1fr)}.models,.pillars,.path,.gallery,.rlist{grid-template-columns:1fr}}
+
+/* ---- 站点注入：返回书架（浮动
+<a class="backlib" href="../../index.html" title="返回书架" aria-label="返回书架">←</a>
+按钮） ---- */
+.backlib{position:fixed;top:14px;left:14px;z-index:9999;width:34px;height:34px;display:grid;
+  place-items:center;border-radius:50%;border:1px solid rgba(0,0,0,.10);background:rgba(255,255,255,.88);
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:#5d6880;font-size:15px;line-height:1;
+  text-decoration:none;box-shadow:0 2px 10px rgba(0,0,0,.07);transition:.18s}
+.backlib:hover{color:#1b2233;background:#fff;transform:translateX(-1px)}
+@media print{.backlib{display:none}}
+</style></head><body><div class="wrap">
+<header class="hero">
+<div class="kicker">KNOWLEDGE DISTILLATION ATLAS</div>
+<h1>江恩趋势预测法 · 蒸馏图鉴</h1>
+<div class="sub">以形态解读、时间周期与摆动交易预测商品期货趋势</div>
+<div class="meta">威廉·D·江恩（William D. Gann） 著 ｜ 华尔街经典译丛 08 · 地震出版社 ｜ 原书 81,358 字 · 共 4 章</div>
+</header>
+
+<section><h2 class="sec"><span class="dot">◈</span>蒸馏质量指标</h2>
+<div class="metrics"><div class="metric"><div class="mk">DR 蒸馏比</div><div class="mv">3.4%</div><div class="md">M 档 1.5%~4%</div></div><div class="metric"><div class="mk">PC 命题覆盖率</div><div class="mv">1.00</div><div class="md">硬门 ≥ 0.95</div></div><div class="metric"><div class="mk">AR 锚点率</div><div class="mv">1.00</div><div class="md">硬门 ≥ 0.95</div></div><div class="metric"><div class="mk">SF 结构保真</div><div class="mv">0.99</div><div class="md">硬门 ≥ 0.85</div></div><div class="metric"><div class="mk">QS 质量分</div><div class="mv">100</div><div class="md">硬门 ≥ 95</div></div></div>
+<div class="pillars"><div class="pillar"><h4>支柱一 · 品种选择</h4><p>十八项优势 · 季节性｜选对战场比战术更重要</p></div><div class="pillar"><h4>支柱二 · 基础纪律</h4><p>五项先决条件 · 止损单｜先有纪律，再谈方法</p></div><div class="pillar"><h4>支柱三 · 形态解读</h4><p>百分比 · 50% 位 · 28 条规则｜用价格结构定买卖点</p></div><div class="pillar"><h4>支柱四 · 时间与摆动</h4><p>时间周期 · 时间逆转 · 摆动交易｜时间定转折，摆动定动作</p></div></div></section>
+
+<section><h2 class="sec"><span class="dot">◈</span>核心思维模型</h2>
+<div class="models"><article class="mcard"><div class="mhead"><span class="mnum">模型1</span><h3>品种结构优势模型</h3><span class="msub">为什么期货比股票更适合技术交易</span></div><p class="mdef">以品种结构差异判断某套技术方法是否适用：方向单一、品种少、无分红干扰的市场，趋势判据更稳定。</p><p class="mmech">股票存在板块分化，指数上涨时仍有大量个股下跌，因此个股判据必须叠加相对强弱；期货所有合约跟随同一供求趋势，判断一次即可覆盖全品种。此外期货无分红、拆股、清算退市等公司行为干扰，价格序列更连续，历史阻力位的有效性更高。</p><div class="manchor">原书锚点：期货季节性与单一趋势使判据更稳定（第1章·能从商品期货中赚钱吗）</div></article><article class="mcard"><div class="mhead"><span class="mnum">模型2</span><h3>百分比阻力模型</h3><span class="msub">50% 半路点与八等分</span></div><p class="mdef">以最高卖出价与最低卖出价的差值划分百分比（50%、整数百分比、八等分、三等分），作为阻力与买卖点。</p><p class="mmech">价格区间记录了多空双方的成本分布。50% 位是平均成本线，跌破后上方全部持仓转为亏损，抛压最重；八等分与三等分则对应不同的持仓成本簇。江恩认为这些位置之所以有效，是因为它们对应真实的成本分布，而非神秘数字。</p><div class="manchor">原书锚点：以最高最低卖出价的百分比与 50% 位定阻力（第2章·形态解读）</div></article><article class="mcard"><div class="mhead"><span class="mnum">模型3</span><h3>突破点与摆动模型</h3><span class="msub">时间耗尽后的能量释放</span></div><p class="mdef">在吸筹或派发耗尽时间后的第一个有效突破处建仓，随后以周线摆动图的低点买入、高点减仓，只做与主趋势同向的摆动。</p><p class="mmech">横盘整理是买卖双方在狭窄区间内反复消耗的过程。整理时间越长，双方持仓成本越集中，一旦突破，止损盘与追单同时涌入，形成快速单边行情。摆动交易则利用主趋势中的次级回撤，在回撤低点买入，把成本控制在趋势的有利一侧。</p><div class="manchor">原书锚点：突破点是时间耗尽后的启动点，摆动交易顺向操作（第4章·摆动交易最能赢利）</div></article><article class="mcard"><div class="mhead"><span class="mnum">模型4</span><h3>时间周期与缺口模型</h3><span class="msub">时间逆转与缺口性质</span></div><p class="mdef">以重要顶底起算的时间间隔寻找重复周期，当周期耗尽而价格未创新高或新低即为转折信号；缺口按位置分为突破、持续、衰竭三类，性质不同。</p><p class="mmech">时间是推动力耗尽的过程。当价格在相近的时间间隔后再次到达极值区，说明周期在重复；若时间已到而价格未能创新高，说明买方力量已不足以维持节奏。缺口则记录情绪的突然释放：突破缺口出现在整理末端，持续缺口出现在行情中段，衰竭缺口出现在末端且常被快速回补。</p><div class="manchor">原书锚点：时间周期主导转折，缺口按性质分类（第3章、第4章）</div></article></div></section>
+
+<section><h2 class="sec"><span class="dot">◈</span>核心规则速查</h2>
+<section class="rgroup"><h4>类别一 · 基础纪律</h4><ul class="rlist"><li><span class="rnum">1</span><span class="rname">五项先决条件</span><span class="rdesc">知识、耐心、勇气、健康、本金</span></li><li><span class="rnum">2</span><span class="rname">止损幅度</span><span class="rdesc">谷物 1~5 美分，棉花 20~40 点</span></li><li><span class="rnum">3</span><span class="rname">资金上限</span><span class="rdesc">单次不超本金十分之一</span></li><li><span class="rnum">4</span><span class="rname">远离报价机</span><span class="rdesc">收市后研究图表，不盯盘</span></li></ul></section><section class="rgroup"><h4>类别二 · 买卖点</h4><ul class="rlist"><li><span class="rnum">5</span><span class="rname">50% 半路点</span><span class="rdesc">区间中点是最强阻力或支撑</span></li><li><span class="rnum">6</span><span class="rname">百分比阻力</span><span class="rdesc">1/8、1/3、2/3、3/4 与整数百分比</span></li><li><span class="rnum">7</span><span class="rname">以顶测底</span><span class="rdesc">用顶部价格推算下方支撑</span></li><li><span class="rnum">8</span><span class="rname">以底测顶</span><span class="rdesc">用底部价格推算上方阻力</span></li></ul></section><section class="rgroup"><h4>类别三 · 趋势与时间</h4><ul class="rlist"><li><span class="rnum">9</span><span class="rname">时间优先</span><span class="rdesc">时间会打破空间与成交量的平衡</span></li><li><span class="rnum">10</span><span class="rname">时间逆转</span><span class="rdesc">顶底时间间隔呈现规律性重复</span></li><li><span class="rnum">11</span><span class="rname">突破点</span><span class="rdesc">整理耗尽时间后的首个有效突破</span></li><li><span class="rnum">12</span><span class="rname">摆动交易</span><span class="rdesc">摆动低点买、高点减，只做顺向</span></li></ul></section><section class="rgroup"><h4>类别四 · 缺口与消息</h4><ul class="rlist"><li><span class="rnum">13</span><span class="rname">突破缺口</span><span class="rdesc">整理末端的放量缺口，不易回补</span></li><li><span class="rnum">14</span><span class="rname">衰竭缺口</span><span class="rdesc">趋势末端的缺口，常快速回补</span></li><li><span class="rnum">15</span><span class="rname">消息不改趋势</span><span class="rdesc">依规则交易，不依消息交易</span></li></ul></section></section>
+
+<section><h2 class="sec"><span class="dot">◈</span>进阶路径</h2>
+<div class="path"><div class="pstep"><span class="pday">第一阶段 第 1~7 天：图表与百分比内化</span><p>为 3 个品种各绘周、月高低点图；标出全部 50% 与八等分位，回测其有效次数。</p></div><div class="pstep"><span class="pday">第二阶段 第 8~14 天：最小仓位执行</span><p>以最小合约实盘，只在 50% 位或突破点入场，入场即挂止损。</p></div><div class="pstep"><span class="pday">第三阶段 第 15~21 天：摆动与时间窗</span><p>绘制周线摆动图，执行三次顺向摆动；记录时间周期与实际转折的偏差。</p></div></div></section>
+
+<section><h2 class="sec"><span class="dot">◈</span>概念网络图谱（25 节点）</h2>
+<div class="mermaid">
+graph TD
+  ROOT((时间主导趋势)) ==> C01[品种结构优势]
+  ROOT ==> C02[时间周期]
+  C01 --> C03[季节性与单一趋势]
+  C01 --> C04[五项先决条件]
+  C04 --> C05[/止损单/]
+  C04 --> C06[/资金十等分/]
+  C02 ==> C07[时间逆转]
+  C02 ==> C08[突破点]
+  C07 --> C09{周期耗尽}
+  C08 --> C10{整理区间}
+  ROOT ==> C11[形态解读]
+  C11 --> C12[/百分比阻力/]
+  C12 --> C13{50%半路点}
+  C12 --> C14{八等分与三等分}
+  C11 --> C15[/以顶测底/]
+  C11 --> C16[/以底测顶/]
+  C10 --> C17[摆动交易]
+  C17 --> C18[/顺向摆动/]
+  C17 --> C19[[逆势抢反弹]]
+  C05 -.->|对立| C20[[无止损裸单]]
+  C11 ==> C21[28条交易规则]
+  C21 --> C22[缺口理论]
+  C22 --> C23{衰竭缺口}
+  C22 --> C24{突破缺口}
+
+</div></section>
+
+<section><h2 class="sec"><span class="dot">◈</span>核心图表索引</h2>
+<div class="gallery"><figure class="figcard"><figcaption><span class="fch">全书</span><span class="fcap">本版为纯文字排印，原书图表未被收入；形态判据以文字与字符示意表达</span></figcaption></figure><figure class="figcard"><figcaption><span class="fch">第2章·形态解读</span><span class="fcap">百分比阻力与 50% 半路点以表格形式给出，见 D3 模块三</span></figcaption></figure><figure class="figcard"><figcaption><span class="fch">第4章·摆动交易最能赢利</span><span class="fcap">周线摆动图规则以文字描述，见 D2 模型三</span></figcaption></figure></div></section>
+
+<div class="footer">本图鉴由 AI 辅助生成，是对原书的知识蒸馏成果，非原书替代品 · 知识截止 2026-10<br>原书著作权归作者与出版方所有</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>
+if(window.mermaid){mermaid.initialize({startOnLoad:true,theme:'default',securityLevel:'loose'});mermaid.run({querySelector:'.mermaid'});}
+</script>
+</body></html>

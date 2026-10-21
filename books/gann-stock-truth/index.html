@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>江恩股市定律 · 蒸馏图鉴</title>
+<style>
+:root {
+  --bg: #0f1420; --panel: #171e30; --panel2: #1d2740; --line: #2a3550;
+  --ink: #e8ecf5; --dim: #9aa5c0; --gold: #e8b64c; --red: #e05252; --green: #3fb68b;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif; background: var(--bg); color: var(--ink); line-height: 1.7; }
+.wrap { max-width: 1180px; margin: 0 auto; padding: 24px; }
+header.hero { text-align: center; padding: 56px 20px 40px; background: linear-gradient(160deg, #17233f 0%, #0f1420 70%); border-radius: 18px; border: 1px solid var(--line); margin-bottom: 24px; }
+header.hero .kicker { color: var(--gold); letter-spacing: 4px; font-size: 13px; margin-bottom: 12px; }
+header.hero h1 { font-size: 34px; font-weight: 800; letter-spacing: 1px; }
+header.hero .sub { color: var(--dim); margin-top: 12px; font-size: 15px; }
+header.hero .meta { color: var(--dim); margin-top: 18px; font-size: 13px; }
+section { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 28px; margin-bottom: 24px; }
+h2.sec { font-size: 22px; font-weight: 700; margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+h2.sec .dot { color: var(--gold); margin-right: 8px; }
+.metrics { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
+.metric { background: var(--panel2); border: 1px solid var(--line); border-radius: 12px; padding: 18px; text-align: center; }
+.metric .mk { font-size: 12px; color: var(--dim); letter-spacing: 1px; }
+.metric .mv { font-size: 26px; font-weight: 800; margin: 6px 0 2px; }
+.metric .mv.pass { color: var(--green); }
+.metric .md { font-size: 11px; color: var(--dim); }
+.pillars { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 18px; }
+.pillar { background: var(--panel2); border-left: 3px solid var(--gold); border-radius: 10px; padding: 16px; }
+.pillar h4 { font-size: 15px; margin-bottom: 6px; }
+.pillar p { font-size: 13px; color: var(--dim); }
+.models { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.mcard { background: var(--panel2); border: 1px solid var(--line); border-radius: 14px; padding: 22px; }
+.mhead { display: flex; align-items: baseline; gap: 10px; margin-bottom: 12px; }
+.mnum { color: var(--gold); font-weight: 700; font-size: 13px; white-space: nowrap; }
+.mhead h3 { font-size: 18px; }
+.msub { color: var(--dim); font-size: 12px; margin-left: auto; }
+.mdef { font-size: 14px; margin-bottom: 10px; }
+.mmech { font-size: 13px; color: var(--dim); margin-bottom: 12px; }
+.manchor { font-size: 12px; color: var(--gold); }
+.rgroup h4 { font-size: 16px; color: var(--gold); margin: 16px 0 10px; }
+.rlist { list-style: none; display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+.rlist li { background: var(--panel2); border-radius: 8px; padding: 10px 14px; display: flex; align-items: center; gap: 10px; font-size: 13px; }
+.rnum { color: var(--gold); font-weight: 700; min-width: 22px; }
+.rname { font-weight: 600; white-space: nowrap; }
+.rdesc { color: var(--dim); }
+.mermaid { background: #0b0f1a; border: 1px solid var(--line); border-radius: 12px; padding: 20px; overflow-x: auto; }
+.mermaid svg { max-width: 100%; height: auto; }
+.path { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.pstep { background: var(--panel2); border-radius: 14px; padding: 20px; border-top: 3px solid var(--gold); }
+.pday { color: var(--gold); font-weight: 700; font-size: 13px; }
+.pstep h4 { font-size: 16px; margin: 8px 0; }
+.pstep p { font-size: 13px; color: var(--dim); }
+.gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.figcard { background: var(--panel2); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+.figcard img { width: 100%; display: block; background: #fff; }
+.figcard figcaption { padding: 10px 12px; font-size: 12px; }
+.fch { display: block; color: var(--gold); margin-bottom: 2px; }
+.fcap { color: var(--dim); }
+.footer { text-align: center; color: var(--dim); font-size: 12px; padding: 24px; }
+@media (max-width: 820px) {
+  .metrics { grid-template-columns: repeat(2, 1fr); }
+  .models, .pillars, .path, .gallery, .rlist { grid-template-columns: 1fr; }
+}
+
+/* ---- 站点注入：返回书架（浮动按钮
+<a class="backlib" href="../../index.html" title="返回书架" aria-label="返回书架">←</a>
+） ---- */
+.backlib{position:fixed;top:14px;left:14px;z-index:9999;width:34px;height:34px;display:grid;
+  place-items:center;border-radius:50%;border:1px solid rgba(0,0,0,.10);background:rgba(255,255,255,.88);
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:#5d6880;font-size:15px;line-height:1;
+  text-decoration:none;box-shadow:0 2px 10px rgba(0,0,0,.07);transition:.18s}
+.backlib:hover{color:#1b2233;background:#fff;transform:translateX(-1px)}
+@media print{.backlib{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <div class="kicker">KNOWLEDGE DISTILLATION ATLAS</div>
+  <h1>江恩股市定律 · 蒸馏图鉴</h1>
+  <div class="sub">华尔街百年交易大师的看盘与风控奠基之作 —— 高保真知识蒸馏单页全景</div>
+  <div class="meta">威廉·D.江恩（William D. Gann）著 · 田继鸣 等译 · 清华大学出版社（2011年9月第1版） · 原书 116,497 字 · 32 章加译后记</div>
+</header>
+
+<section>
+  <h2 class="sec"><span class="dot">◈</span>蒸馏质量指标</h2>
+  <div class="metrics">
+    <div class="metric"><div class="mk">DR 蒸馏比</div><div class="mv pass">3.1%~3.8%</div><div class="md">M 档 1.5%~4%</div></div>
+    <div class="metric"><div class="mk">PC 命题覆盖率</div><div class="mv pass">1.00</div><div class="md">硬门 ≥ 0.95</div></div>
+    <div class="metric"><div class="mk">AR 锚点率</div><div class="mv pass">1.00</div><div class="md">硬门 ≥ 0.95</div></div>
+    <div class="metric"><div class="mk">SF 结构保真</div><div class="mv pass">0.99</div><div class="md">硬门 ≥ 0.85</div></div>
+    <div class="metric"><div class="mk">QS 质量分</div><div class="mv pass">100</div><div class="md">硬门 ≥ 95</div></div>
+  </div>
+  <div class="pillars">
+    <div class="pillar"><h4>支柱一 · 认知与心理基石</h4><p>看盘科学 · 商业化投机 · 四大人性弱点防御（第1~7章）</p></div>
+    <div class="pillar"><h4>支柱二 · 核心交易法则</h4><p>十二条军规 · 资本管理 · 刚性止损纪律（第8章）</p></div>
+    <div class="pillar"><h4>支柱三 · 操作技艺与周期</h4><p>金字塔加仓 · 禁逆势摊平 · 七个行动区域（第9~15章）</p></div>
+    <div class="pillar"><h4>支柱四 · 趋势形态与预期差</h4><p>板块轮动 · 相对强弱 · 双顶双底 · 象鼻虫定理（第16~32章）</p></div>
+  </div>
+</section>
+
+<section>
+  <h2 class="sec"><span class="dot">◈</span>七大核心交易心智模型</h2>
+  <div class="models">
+<article class="mcard"><div class="mhead"><span class="mnum">模型一</span><h3>供求天平模型</h3><span class="msub">大盘看盘第一性原理</span></div><p class="mdef">看盘不是预测未来的水晶球，而是通过连续行情记录客观度量多空供求力量转移的动态天平。</p><p class="mmech">大盘记录着全市场所有资金、内幕、心理与预期的合力。买方需求压倒供给则重心上移，供给过剩则价格坍塌。</p><div class="manchor">📖 第1章·什么是看盘、第14章·如何正确看盘</div></article>
+<article class="mcard"><div class="mhead"><span class="mnum">模型二</span><h3>七个行动区域模型</h3><span class="msub">周期估值与饱和点预警</span></div><p class="mdef">以内在正常价值为中轴，向上划分三个上涨阶梯，向下划分三个下跌阶梯，形成七阶周期坐标系。</p><p class="mmech">派发第三区公众狂热时，无利空却早盘跳空低开1~5点，是供求饱和点的首道预警闪电。</p><div class="manchor">📖 第11章·七个行动区域</div></article>
+<article class="mcard"><div class="mhead"><span class="mnum">模型三</span><h3>金字塔顺势加仓模型</h3><span class="msub">风险锁定与非对称暴利引擎</span></div><p class="mdef">仅在浮盈且突破新阻力时按递减比例追加头寸，同步上移全仓止损锁死下行风险。</p><p class="mmech">首笔试错成功确立优势，突破前高追加次笔，止损上移保本，单边主升浪中几何复利。</p><div class="manchor">📖 第9章·操作方法</div></article>
+<article class="mcard"><div class="mhead"><span class="mnum">模型四</span><h3>刚性止损与移动保本模型</h3><span class="msub">资本保全绝对防线</span></div><p class="mdef">开仓同步挂设1~3点保护性止损；浮盈后毫不迟疑上移至保本价位之上。</p><p class="mmech">通过小额刚性止损截断亏损，移动保本固化利润，实现大赚小亏绝不致命的非对称期望值。</p><div class="manchor">📖 第8章·规则2、规则4</div></article>
+<article class="mcard"><div class="mhead"><span class="mnum">模型五</span><h3>相对强弱与板块动量模型</h3><span class="msub">机构主力穿透与龙头捕捉</span></div><p class="mdef">大盘暴跌中逆势抗跌收阳的个股，大盘企稳时必为领涨超级龙头；滞涨衰竭者必为领跌毒瘤。</p><p class="mmech">系统性暴跌是对个股最严酷的压力测试，逆势抗跌暴露主力深度锁仓。</p><div class="manchor">📖 第18章、第19章</div></article>
+<article class="mcard"><div class="mhead"><span class="mnum">模型六</span><h3>双顶双底与突破动量模型</h3><span class="msub">形态反转与主升浪确认</span></div><p class="mdef">相隔数周至数月两次受阻或企稳是高胜率反转；放量突破历史极值引发单边加速。</p><p class="mmech">二次测试不破表明力量衰竭，突破历史天花板则上方无套牢盘，动量爆发。</p><div class="manchor">📖 第20章、第22章</div></article>
+<article class="mcard"><div class="mhead"><span class="mnum">模型七</span><h3>象鼻虫预期差定理</h3><span class="msub">消息反应与真实供求试金石</span></div><p class="mdef">消息字面不决定趋势，大盘在关键位置对消息的真实反应才是检验主力底牌的终极试金石。</p><p class="mmech">极端利空出尽而价格拒跌为底，重大利好公布而放量滞涨为顶。</p><div class="manchor">📖 第30章·棉籽象鼻虫</div></article>
+  </div>
+</section>
+
+<section>
+  <h2 class="sec"><span class="dot">◈</span>江恩28条买卖军规速查</h2>
+<section class="rgroup"><h4>风险控制军规</h4><ul class="rlist"><li><span class="rnum">1</span><span class="rname">资本配比</span><span class="rdesc">单笔最大损失不超过本金 1/10</span></li><li><span class="rnum">2</span><span class="rname">刚性止损</span><span class="rdesc">开仓同步挂 1~3 点保护性止损单</span></li><li><span class="rnum">3</span><span class="rname">杜绝过度</span><span class="rdesc">严控交易频率与持仓规模</span></li><li><span class="rnum">4</span><span class="rname">保护利润</span><span class="rdesc">浮盈 3 点以上止损上移保本</span></li><li><span class="rnum">5</span><span class="rname">顺应趋势</span><span class="rdesc">大盘向上只做多，向下只做空</span></li><li><span class="rnum">6</span><span class="rname">疑惑即离场</span><span class="rdesc">走势不明时坚决空仓观望</span></li></ul></section>
+<section class="rgroup"><h4>仓位管理军规</h4><ul class="rlist"><li><span class="rnum">7</span><span class="rname">专注活跃</span><span class="rdesc">只交易流动性优良的活跃股</span></li><li><span class="rnum">8</span><span class="rname">分散配置</span><span class="rdesc">资本均分于 3~5 只不同行业</span></li><li><span class="rnum">9</span><span class="rname">市价执行</span><span class="rdesc">信号确立坚决市价单成交</span></li><li><span class="rnum">10</span><span class="rname">让利润奔跑</span><span class="rdesc">趋势未变就耐心持仓</span></li><li><span class="rnum">11</span><span class="rname">累积盈余</span><span class="rdesc">盈利强制提取 20%~50% 储备</span></li><li><span class="rnum">12</span><span class="rname">拒绝为分红买入</span><span class="rdesc">不因股息买入疲软股票</span></li></ul></section>
+<section class="rgroup"><h4>趋势形态军规</h4><ul class="rlist"><li><span class="rnum">13</span><span class="rname">双向思维</span><span class="rdesc">做空与做多同等安全实用</span></li><li><span class="rnum">14</span><span class="rname">金字塔加仓</span><span class="rdesc">浮盈突破才顺势递减加码</span></li><li><span class="rnum">15</span><span class="rname">七个区域定位</span><span class="rdesc">狂热派发区饱和点坚决出局</span></li><li><span class="rnum">16</span><span class="rname">熟知股票习性</span><span class="rdesc">交易前熟知标的波动节奏</span></li><li><span class="rnum">17</span><span class="rname">板块联动研判</span><span class="rdesc">借龙头预判二梯队节奏</span></li><li><span class="rnum">18</span><span class="rname">做多相对最强</span><span class="rdesc">挑逆势抗跌的龙头做多</span></li><li><span class="rnum">19</span><span class="rname">做空相对最弱</span><span class="rdesc">挑滞涨衰竭的弱股做空</span></li><li><span class="rnum">20</span><span class="rname">双顶双底反转</span><span class="rdesc">两次受阻或企稳为反转架构</span></li><li><span class="rnum">21</span><span class="rname">多次震荡衰竭</span><span class="rdesc">三四次测试不破则反转</span></li><li><span class="rnum">22</span><span class="rname">历史水平突破</span><span class="rdesc">突破历史高点主升浪爆发</span></li><li><span class="rnum">23</span><span class="rname">禁逆势摊平</span><span class="rdesc">严禁亏损加仓摊薄成本</span></li><li><span class="rnum">24</span><span class="rname">对冲套头</span><span class="rdesc">买最强同时做空最弱</span></li><li><span class="rnum">25</span><span class="rname">定期看护投资</span><span class="rdesc">买入后定期复核持仓</span></li><li><span class="rnum">26</span><span class="rname">象鼻虫试金石</span><span class="rdesc">利空拒跌为底利好滞涨为顶</span></li><li><span class="rnum">27</span><span class="rname">商品期货纪律</span><span class="rdesc">高杠杆需更苛刻止损</span></li></ul></section>
+<section class="rgroup"><h4>心理防御军规</h4><ul class="rlist"><li><span class="rnum">28</span><span class="rname">平静理性交易</span><span class="rdesc">杜绝疲惫愤怒狂躁情绪交易</span></li></ul></section>
+</section>
+
+<section>
+  <h2 class="sec"><span class="dot">◈</span>交易员进阶21天路径</h2>
+  <div class="path">
+<div class="pstep"><span class="pday">第 1~7 天</span><h4>冷启动与铁律内化</h4><p>暂停大额实盘，背诵 28 条军规与八问八戒，复盘半年交割单标注违规失误</p></div><div class="pstep"><span class="pday">第 8~14 天</span><h4>微仓实盘刻意练习</h4><p>以 100 股测试仓实战，严格执行市价入场秒挂止损，体验一次真实止损触发</p></div><div class="pstep"><span class="pday">第 15~21 天</span><h4>金字塔加仓与盈余闭环</h4><p>浮盈上移保本止损，突破前高执行次笔加仓，完成首笔利润 20%~50% 转出</p></div>
+  </div>
+</section>
+
+<section>
+  <h2 class="sec"><span class="dot">◈</span>概念网络图谱（32 节点）</h2>
+  <div class="mermaid">
+graph TD
+  ROOT((大盘供求平衡)) ==> C01[行情记录]
+  ROOT --> C02[商业化投机]
+  C02 --> C03[双向交易思维]
+  C02 -.->|对立| C04[[买断死扛陷阱]]
+  C02 -.->|对立| C05[[盲目摊平补仓]]
+  C02 -.->|对立| C06[[过度交易]]
+  C02 --> C11[机械化规则]
+  C11 ==> C07[/保护性止损单/]
+  C07 --> C08[/跟踪止损/]
+  C08 --> C09[/金字塔加仓法/]
+  C02 --> C10[/对冲套头交易/]
+  ROOT ==> C12[七个行动区域]
+  C12 --> C13[正常价值区]
+  C12 --> C14[派发第三区]
+  C12 --> C15[吸筹第三区]
+  C14 --> C16{饱和点信号}
+  C01 --> C17[股票个性习性]
+  C01 --> C18[行业板块联动]
+  C01 ==> C19{道琼斯平均指数}
+  C19 --> C20[相对强势股]
+  C19 --> C21[相对弱势股]
+  C01 --> C22{双重顶形态}
+  C01 --> C23{双重底形态}
+  C01 --> C24{历史阻力突破}
+  ROOT --> C25[大宗商品期货]
+  C25 --> C26[象鼻虫定理]
+  C26 --> C27{消息预期差}
+  C11 -.->|对立| C28[[四重人性弱点]]
+  C11 --> C29[/安全盈余储备/]
+  C14 -.->|构成| C30[[市场操纵出货]]
+  C07 ==> C31[资本保全防线]
+  </div>
+</section>
+
+<section>
+  <h2 class="sec"><span class="dot">◈</span>原书历史走势图表（31 张）</h2>
+  <div class="gallery">
+<figure class="figcard"><img loading="lazy" src="figures/Image00000.jpg" alt="书名页"><figcaption><span class="fch">封面</span><span class="fcap">书名页</span></figcaption></figure>
+<figure class="figcard"><img loading="lazy" src="figures/Image00001.jpg" alt="护封封面"><figcaption><span class="fch">封面</span><span class="fcap">护封封面</span></figcaption></figure>
+<figure class="figcard"><img loading="lazy" src="figures/Image00002.jpg" alt="书脊与封底"><figcaption><span class="fch">封面</span><span class="fcap">书脊与封底</span></figcaption></figure>
+<figure class="figcard"><img loading="lazy" src="figures/Image00003.jpg" alt="1895—1904 年铁路股月度高低点走势图"><figcaption><span class="fch">第23章·铁路股的顶部和底部</span><span class="fcap">1895—1904 年铁路股月度高低点走势图</span></figcaption></figure>
+<figure class="figcard"><img loading="lazy" src="figures/Image00004.jpg" alt="1896—1902 年铁路股震荡区间与顶底标注"><figcaption><span class="fch">第23章·铁路股的顶部和底部</span><span class="fcap">1896—1902 年铁路股震荡区间与顶底标注</span></figcaption></figure>
+<figure class="figcard"><img loading="lazy" src="figures/Image00005.jpg" alt="1913—1922 年走势图（含 1920 年顶部 144 点）"><figcaption><span class="fch">第23章·铁路股的顶部和底部</span><span class="fcap">1913—1922 年走势图（含 1920 年顶部 144 点）</span></figcaption></figure>
+<figure class="figcard"><img loading="lazy" src="figures/Image00006.jpg" alt="熊市跌幅统计表（1919 顶部至 1920—1921 低点）"><figcaption><span class="fch">第8章·成功交易的规则</span><span class="fcap">熊市跌幅统计表（1919 顶部至 1920—1921 低点）</span></figcaption></figure>
+<figure class="figcard"><img loading="lazy" src="figures/Image00007.jpg" alt="1902—1909 年铁路股周期性顶底走势"><figcaption><span class="fch">第23章·铁路股的顶部和底部</span><span class="fcap">1902—1909 年铁路股周期性顶底走势</span></figcaption></figure>
+<figure class="figcard"><img loading="lazy" src="figures/Image00008.jpg" alt="1908—1917 年铁路股月度高低点与突破水平"><figcaption><span class="fch">第23章·铁路股的顶部和底部</span><span class="fcap">1908—1917 年铁路股月度高低点与突破水平</span></figcaption></figure>
+<figure class="figcard"><img loading="lazy" src="figures/Image00009.jpg" alt="工业股历史底部构筑与吸筹区走势"><figcaption><span class="fch">第24章·工业股的底部和顶部</span><span class="fcap">工业股历史底部构筑与吸筹区走势</span></figcaption></figure>
+<figure class="figcard"><img loading="lazy" src="figures/Image00010.jpg" alt="工业股历史顶部派发与饱和点走势"><figcaption><span class="fch">第24章·工业股的底部和顶部</span><span class="fcap">工业股历史顶部派发与饱和点走势</span></figcaption></figure>
+<figure class="figcard"><img loading="lazy" src="figures/Image00011.jpg" alt="工业股跨周期高低点标注图"><figcaption><span class="fch">第24章·工业股的底部和顶部</span><span class="fcap">工业股跨周期高低点标注图</span></figcaption></figure>
+<figure class="figcard"><img loading="lazy" src="figures/Image00012.jpg" alt="工业股底部反转与双重底确认走势"><figcaption><span class="fch">第24章·工业股的底部和顶部</span><span class="fcap">工业股底部反转与双重底确认走势</span></figcaption></figure>
+<figure class="figcard"><img loading="lazy" src="figures/Image00013.jpg" alt="低价股长期底部窄幅震荡吸筹走势"><figcaption><span class="fch">第25章·低价股的吸筹</span><span class="fcap">低价股长期底部窄幅震荡吸筹走势</span></figcaption></figure>
+<figure class="figcard"><img loading="lazy" src="figures/Image00014.jpg" alt="低价股突破吸筹箱体进入主升段走势"><figcaption><span class="fch">第25章·低价股的吸筹</span><span class="fcap">低价股突破吸筹箱体进入主升段走势</span></figcaption></figure>
+<figure class="figcard"><img loading="lazy" src="figures/Image00015.jpg" alt="个股金字塔加仓与止损上移点位示意"><figcaption><span class="fch">第9章·操作方法</span><span class="fcap">个股金字塔加仓与止损上移点位示意</span></figcaption></figure>
+<figure class="figcard"><img loading="lazy" src="figures/Image00016.jpg" alt="个股突破历史阻力后的单边动量走势"><figcaption><span class="fch">第9章·操作方法</span><span class="fcap">个股突破历史阻力后的单边动量走势</span></figcaption></figure>
+<figure class="figcard"><img loading="lazy" src="figures/Image00017.jpg" alt="道琼斯工业与铁路大盘总体趋势走势"><figcaption><span class="fch">第17章·股市的总体趋势</span><span class="fcap">道琼斯工业与铁路大盘总体趋势走势</span></figcaption></figure>
+<figure class="figcard"><img loading="lazy" src="figures/Image00018.jpg" alt="大盘下跌中逆势抗跌的最强个股走势"><figcaption><span class="fch">第18章·如何断定走势最强的个股</span><span class="fcap">大盘下跌中逆势抗跌的最强个股走势</span></figcaption></figure>
+<figure class="figcard"><img loading="lazy" src="figures/Image00019.jpg" alt="大盘上涨中滞涨衰竭的最弱个股走势"><figcaption><span class="fch">第19章·如何断定个股走势最弱的时间</span><span class="fcap">大盘上涨中滞涨衰竭的最弱个股走势</span></figcaption></figure>
+<figure class="figcard"><img loading="lazy" src="figures/Image00020.jpg" alt="双重顶形态与最终顶部反转走势"><figcaption><span class="fch">第20章·判断最终的顶部和底部</span><span class="fcap">双重顶形态与最终顶部反转走势</span></figcaption></figure>
+<figure class="figcard"><img loading="lazy" src="figures/Image00021.jpg" alt="双重底形态与最终底部反转走势"><figcaption><span class="fch">第20章·判断最终的顶部和底部</span><span class="fcap">双重底形态与最终底部反转走势</span></figcaption></figure>
+<figure class="figcard"><img loading="lazy" src="figures/Image00022.jpg" alt="作者威廉·D.江恩肖像"><figcaption><span class="fch">前言</span><span class="fcap">作者威廉·D.江恩肖像</span></figcaption></figure>
+<figure class="figcard"><img loading="lazy" src="figures/Image00023.jpg" alt="1896—1922 年道琼斯工业平均指数月度高低点汇总图"><figcaption><span class="fch">第23—24章</span><span class="fcap">1896—1922 年道琼斯工业平均指数月度高低点汇总图</span></figcaption></figure>
+<figure class="figcard"><img loading="lazy" src="figures/Image00024.jpg" alt="棉花期货长期月度高低点走势"><figcaption><span class="fch">第27章·如何进行棉花交易</span><span class="fcap">棉花期货长期月度高低点走势</span></figcaption></figure>
+<figure class="figcard"><img loading="lazy" src="figures/Image00025.jpg" alt="棉花期货突破两周高点/低点的转向判据示意"><figcaption><span class="fch">第28章·解读棉花期货大盘的正确方法</span><span class="fcap">棉花期货突破两周高点/低点的转向判据示意</span></figcaption></figure>
+<figure class="figcard"><img loading="lazy" src="figures/Image00026.jpg" alt="棉花期货走势方向转变的确认信号图"><figcaption><span class="fch">第29章·如何判断走势的变化</span><span class="fcap">棉花期货走势方向转变的确认信号图</span></figcaption></figure>
+<figure class="figcard"><img loading="lazy" src="figures/Image00027.jpg" alt="棉籽象鼻虫灾害传闻前后棉花价格反向走势"><figcaption><span class="fch">第30章·棉籽象鼻虫</span><span class="fcap">棉籽象鼻虫灾害传闻前后棉花价格反向走势</span></figcaption></figure>
+<figure class="figcard"><img loading="lazy" src="figures/Image00028.jpg" alt="小麦期货季节供求与派发区间走势"><figcaption><span class="fch">第31章·小麦和玉米交易</span><span class="fcap">小麦期货季节供求与派发区间走势</span></figcaption></figure>
+<figure class="figcard"><img loading="lazy" src="figures/Image00029.jpg" alt="谷物箱体上下沿吸筹与派发区间标注"><figcaption><span class="fch">第32章·判定买进和派发区间</span><span class="fcap">谷物箱体上下沿吸筹与派发区间标注</span></figcaption></figure>
+<figure class="figcard"><img loading="lazy" src="figures/Image00030.jpg" alt="谷物买卖派发区间的战略布局示意"><figcaption><span class="fch">第32章·判定买进和派发区间</span><span class="fcap">谷物买卖派发区间的战略布局示意</span></figcaption></figure>
+  </div>
+</section>
+
+<div class="footer">
+  本图鉴由 AI 辅助生成，是对原书的知识蒸馏成果，非原书替代品 · 知识截止 2026-10 · 原书著作权归作者与出版方所有
+</div>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ startOnLoad: true, theme: 'dark', securityLevel: 'loose' });
+    mermaid.run({ querySelector: '.mermaid' });
+  }
+</script>
+</body>
+</html>

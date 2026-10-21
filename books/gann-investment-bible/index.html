@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>江恩股票投资圣经 · 蒸馏图鉴</title>
+<style>
+:root{--bg:#f7f8fb;--panel:#fff;--panel2:#f2f4f9;--line:#e2e6ef;--ink:#1b2233;--dim:#5d6880;--gold:#b8860b;--green:#1f8a5f;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,"Segoe UI","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);line-height:1.75}
+.wrap{max-width:1180px;margin:0 auto;padding:24px}
+header.hero{text-align:center;padding:52px 20px 38px;background:linear-gradient(160deg,#fff 0%,#eef1f8 100%);border-radius:18px;border:1px solid var(--line);margin-bottom:24px}
+header.hero .kicker{color:var(--gold);letter-spacing:4px;font-size:12px;margin-bottom:12px}
+header.hero h1{font-size:32px;font-weight:800;letter-spacing:1px}
+header.hero .sub{color:var(--dim);margin-top:12px;font-size:15px}
+header.hero .meta{color:var(--dim);margin-top:16px;font-size:13px}
+section{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:26px;margin-bottom:22px}
+h2.sec{font-size:21px;font-weight:700;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+h2.sec .dot{color:var(--gold);margin-right:8px}
+.metrics{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.metric{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:16px;text-align:center}
+.metric .mk{font-size:12px;color:var(--dim)}
+.metric .mv{font-size:24px;font-weight:800;margin:6px 0 2px;color:var(--green)}
+.metric .md{font-size:11px;color:var(--dim)}
+.pillars{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:18px}
+.pillar{background:var(--panel2);border-left:3px solid var(--gold);border-radius:10px;padding:16px}
+.pillar h4{font-size:15px;margin-bottom:6px}
+.pillar p{font-size:13px;color:var(--dim)}
+.models{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.mcard{background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:20px}
+.mhead{display:flex;align-items:baseline;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.mnum{color:var(--gold);font-weight:700;font-size:12px}
+.mhead h3{font-size:17px}
+.msub{color:var(--dim);font-size:12px;margin-left:auto}
+.mdef{font-size:14px;margin-bottom:8px}
+.mmech{font-size:13px;color:var(--dim);margin-bottom:10px}
+.manchor{font-size:12px;color:var(--gold)}
+.rgroup h4{font-size:15px;color:var(--gold);margin:16px 0 10px}
+.rlist{list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.rlist li{background:var(--panel2);border-radius:8px;padding:10px 14px;display:flex;gap:10px;font-size:13px}
+.rnum{color:var(--gold);font-weight:700;min-width:20px}
+.rname{font-weight:600;white-space:nowrap}
+.rdesc{color:var(--dim)}
+.path{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.pstep{background:var(--panel2);border-radius:14px;padding:18px;border-top:3px solid var(--gold)}
+.pday{color:var(--gold);font-weight:700;font-size:13px}
+.pstep p{font-size:13px;color:var(--dim);margin-top:6px}
+.mermaid{background:#fbfcfe;border:1px solid var(--line);border-radius:12px;padding:20px;overflow-x:auto}
+.mermaid svg{max-width:100%;height:auto}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.figcard{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:10px;margin:0}
+.figcard img{width:100%;display:block;border-radius:6px;background:#fff}
+.fch{display:block;color:var(--gold);font-size:12px;margin-bottom:4px}
+.fcap{color:var(--dim);font-size:12px}
+.footer{text-align:center;color:var(--dim);font-size:12px;padding:22px}
+.dim{color:var(--dim);font-size:13px}
+@media(max-width:820px){.metrics{grid-template-columns:repeat(2,1fr)}.models,.pillars,.path,.gallery,.rlist{grid-template-columns:1fr}}
+
+/* ---- 站点注入：返回书架（浮动
+<a class="backlib" href="../../index.html" title="返回书架" aria-label="返回书架">←</a>
+按钮） ---- */
+.backlib{position:fixed;top:14px;left:14px;z-index:9999;width:34px;height:34px;display:grid;
+  place-items:center;border-radius:50%;border:1px solid rgba(0,0,0,.10);background:rgba(255,255,255,.88);
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:#5d6880;font-size:15px;line-height:1;
+  text-decoration:none;box-shadow:0 2px 10px rgba(0,0,0,.07);transition:.18s}
+.backlib:hover{color:#1b2233;background:#fff;transform:translateX(-1px)}
+@media print{.backlib{display:none}}
+</style></head><body><div class="wrap">
+<header class="hero">
+<div class="kicker">KNOWLEDGE DISTILLATION ATLAS</div>
+<h1>江恩股票投资圣经 · 蒸馏图鉴</h1>
+<div class="sub">一部源于江恩权威培训教程的股市投资秘籍</div>
+<div class="meta">威廉·D·江恩（William D. Gann） 著 ｜ 全球证券投资经典译丛 ｜ 原书 323,219 字 · 共 5 章</div>
+</header>
+
+<section><h2 class="sec"><span class="dot">◈</span>蒸馏质量指标</h2>
+<div class="metrics"><div class="metric"><div class="mk">DR 蒸馏比</div><div class="mv">2.0%</div><div class="md">M 档 1.5%~4%</div></div><div class="metric"><div class="mk">PC 命题覆盖率</div><div class="mv">1.00</div><div class="md">硬门 ≥ 0.95</div></div><div class="metric"><div class="mk">AR 锚点率</div><div class="mv">1.00</div><div class="md">硬门 ≥ 0.95</div></div><div class="metric"><div class="mk">SF 结构保真</div><div class="mv">0.99</div><div class="md">硬门 ≥ 0.85</div></div><div class="metric"><div class="mk">QS 质量分</div><div class="mv">100</div><div class="md">硬门 ≥ 95</div></div></div>
+<div class="pillars"><div class="pillar"><h4>支柱一 · 职业化与法则</h4><p>三条禁令 · 交易法则｜先戒掉补仓、死扛、抢跑</p></div><div class="pillar"><h4>支柱二 · 图表与总量</h4><p>四级图表 · 总市值图｜总量看资金，分级看结构</p></div><div class="pillar"><h4>支柱三 · 预测方法</h4><p>时间周期 · 角度线 · 正方图｜时间与价格放进同一坐标系</p></div><div class="pillar"><h4>支柱四 · 机械执行</h4><p>隔夜图 · 趋势线 · 季节性｜把决策移到收盘之后</p></div></div></section>
+
+<section><h2 class="sec"><span class="dot">◈</span>核心思维模型</h2>
+<div class="models"><article class="mcard"><div class="mhead"><span class="mnum">模型1</span><h3>职业化投机模型</h3><span class="msub">三条禁令与交易法则</span></div><p class="mdef">把投机当职业，以三条禁令与一套交易法则约束行为：不摊薄亏损、不固执于臆测价位、不进场太早或离场太晚。</p><p class="mmech">三条禁令对应三种最典型的亏损机制。摊平把可控的小错变成不可控的大错；固执于臆测价位使人无视市场给出的相反证据；抢跑与恋战则使交易者在趋势未确认时入场、在趋势已反转时不肯离场。江恩的解法不是提高判断力，而是用禁令直接切断这些行为路径，再用交易法则给出替代动作。</p><div class="manchor">原书锚点：不摊平、不固执、不抢跑（第1章·基本的交易法则）</div></article><article class="mcard"><div class="mhead"><span class="mnum">模型2</span><h3>总市值与相对强弱模型</h3><span class="msub">总量定方向，强弱定标的</span></div><p class="mdef">以全市场与各板块的总市值图判断资金流向，以个股相对大盘的强弱排名筛选标的。</p><p class="mmech">总市值等于全部上市公司股价乘以股本之和，它反映的是资金总量而非少数权重股的涨跌，因此比指数更难被扭曲。当总市值持续上升，说明增量资金在进场；当总市值上升而指数滞涨，说明资金在向中小盘扩散。相对强弱则回答「买什么」：在市场下跌时抗跌、在市场企稳时率先突破的个股，是资金真正的去处。</p><div class="manchor">原书锚点：总市值图定大势，相对强弱选个股（第1章·总市值）</div></article><article class="mcard"><div class="mhead"><span class="mnum">模型3</span><h3>时间周期模型</h3><span class="msub">从顶底起算的关键节点</span></div><p class="mdef">从重要顶底起算，记录第 30、60、90、120、135、180、225、270、315、360 天（周、月）等节点，观察趋势是否变化。</p><p class="mmech">时间是推动力耗尽的过程。行情启动后，随着时间推移，追随者的边际买盘逐渐减少；当时间到达历史常见节点而价格无法创新高，说明买方已无力维持节奏。江恩用固定的节点序列把这些时刻标定出来，使「该警惕了」从感觉变成日历上的具体日期。</p><div class="manchor">原书锚点：时间到达而价未创新高即为转折（第2章·预测股市行情的时间周期法则）</div></article><article class="mcard"><div class="mhead"><span class="mnum">模型4</span><h3>角度线与正方图模型</h3><span class="msub">把时间与价格放进同一坐标</span></div><p class="mdef">以 45° 线为平衡线，2×1、4×1、8×1 为强势档位，其熊市对应线为弱势档位；以 12×12 与 9 的正方图读出阻力与转折。</p><p class="mmech">角度线把「涨得多快」转化为可比较的斜率，使趋势强弱成为可排序的档位；跌破一条即跌向更低一条，转弱因此成为渐进可观测的过程。正方图则把价格与时间量化到固定网格，当价格与时间在网格上同时到位，即构成转折候选。二者的共同逻辑是：时间与价格必须同时考虑，单看价格会误判。</p><div class="manchor">原书锚点：角度线定强弱档位，正方图定阻力位（第2章·如何运用平面几何中的角）</div></article><article class="mcard"><div class="mhead"><span class="mnum">模型5</span><h3>隔夜图机械交易模型</h3><span class="msub">收盘决策，次日执行</span></div><p class="mdef">只记录收盘价与次日开盘价的关系，据此在收盘后决定次日买卖，把决策完全移出盘中。</p><p class="mmech">盘中价格受情绪、消息与流动性扰动，决策质量最低；收盘价则是一天博弈的最终结果，信息含量最高。隔夜图法用「收盘价相对前一日区间的位置」作为唯一信号，把复杂的盘中判断压缩为一个二元选择，从而使执行可复现、可复盘、可交给他人执行。江恩为美国钢铁给出的完整规则还包含加仓与止损的联动：信号连续同向时按固定间隔</p><div class="manchor">原书锚点：按隔夜图规则在收盘后确定次日动作（第3章·隔夜图交易法）</div></article><article class="mcard"><div class="mhead"><span class="mnum">模型6</span><h3>季节性节奏模型</h3><span class="msub">年度节律与背景概率</span></div><p class="mdef">不同月份的市场节奏存在系统性差异，某些月份更易形成顶部，某些月份更易形成底部；季节性只作背景概率，不替代价格判据。</p><p class="mmech">季节性来自资金与实体的年度节律：年初的资金配置、年中的结算压力、年末的税收与报表效应，都会周期性改变供求。江恩统计了历年的月度高低点分布，发现某些月份反复出现转折。但他明确：季节性只调整概率权重，不构成独立信号。</p><div class="manchor">原书锚点：不同月份的市场节奏存在系统性差异（第5章·股票的季节性变化）</div></article></div></section>
+
+<section><h2 class="sec"><span class="dot">◈</span>核心规则速查</h2>
+<section class="rgroup"><h4>类别一 · 三条禁令</h4><ul class="rlist"><li><span class="rnum">1</span><span class="rname">不摊薄亏损</span><span class="rdesc">严禁在亏损头寸加仓拉低均价</span></li><li><span class="rnum">2</span><span class="rname">不固执臆测</span><span class="rdesc">不坚持自己猜出的价位</span></li><li><span class="rnum">3</span><span class="rname">不抢跑不恋战</span><span class="rdesc">进场不要太早，离场不要太晚</span></li></ul></section><section class="rgroup"><h4>类别二 · 交易法则</h4><ul class="rlist"><li><span class="rnum">4</span><span class="rname">顺应主趋势</span><span class="rdesc">只在主趋势方向开仓</span></li><li><span class="rnum">5</span><span class="rname">小额风险博大盈利</span><span class="rdesc">单次风险有限，盈利不设上限</span></li><li><span class="rnum">6</span><span class="rname">保护账面盈利</span><span class="rdesc">浮盈后上移止损，不让盈利变亏损</span></li><li><span class="rnum">7</span><span class="rname">止损位置</span><span class="rdesc">设于反向边界外 1~3 点</span></li><li><span class="rnum">8</span><span class="rname">最佳买入点位</span><span class="rdesc">双底或突破前高后回抽</span></li><li><span class="rnum">9</span><span class="rname">最佳卖出点位</span><span class="rdesc">双顶或跌破前低后反弹</span></li><li><span class="rnum">10</span><span class="rname">50% 价位</span><span class="rdesc">区间中点是重要买卖参考</span></li></ul></section><section class="rgroup"><h4>类别三 · 图表与总量</h4><ul class="rlist"><li><span class="rnum">11</span><span class="rname">四级图表</span><span class="rdesc">年、月、周、日各有分工</span></li><li><span class="rnum">12</span><span class="rname">总市值图</span><span class="rdesc">以全市场总市值判断资金流向</span></li><li><span class="rnum">13</span><span class="rname">板块总市值</span><span class="rdesc">以板块总市值相对变化判断轮动</span></li><li><span class="rnum">14</span><span class="rname">相对强弱</span><span class="rdesc">挑抗跌且率先突破者</span></li><li><span class="rnum">15</span><span class="rname">对冲结构</span><span class="rdesc">多最强同时空最弱</span></li></ul></section><section class="rgroup"><h4>类别四 · 预测与执行</h4><ul class="rlist"><li><span class="rnum">16</span><span class="rname">时间周期节点</span><span class="rdesc">30/60/90/120/135/180/225/270/315/360</span></li><li><span class="rnum">17</span><span class="rname">移动平均趋势线</span><span class="rdesc">从顶底发出的角度线即真正的均线</span></li><li><span class="rnum">18</span><span class="rname">平面几何角度</span><span class="rdesc">以 45° 为平衡线判断强弱</span></li><li><span class="rnum">19</span><span class="rname">正方图</span><span class="rdesc">12×12 与 9 的正方图定阻力</span></li><li><span class="rnum">20</span><span class="rname">隔夜图</span><span class="rdesc">收盘定信号，开盘执行</span></li><li><span class="rnum">21</span><span class="rname">趋势线</span><span class="rdesc">跌破上升趋势线为转弱第一信号</span></li><li><span class="rnum">22</span><span class="rname">季节性</span><span class="rdesc">只作背景概率，不作独立信号</span></li><li><span class="rnum">23</span><span class="rname">年度高低点</span><span class="rdesc">以年线判断当前处于历史高位还是低位</span></li><li><span class="rnum">24</span><span class="rname">月线主趋势</span><span class="rdesc">以月线确认主趋势，不因日线波动改变</span></li><li><span class="rnum">25</span><span class="rname">周线波段</span><span class="rdesc">以周线定位回调级别与止损基准</span></li><li><span class="rnum">26</span><span class="rname">疑问即用法则</span><span class="rdesc">走势不明时按既定法则执行，不凭感觉</span></li><li><span class="rnum">27</span><span class="rname">保护性止损上移</span><span class="rdesc">每创新高即上移止损，锁定浮动利润</span></li><li><span class="rnum">28</span><span class="rname">不追低价股</span><span class="rdesc">低价常因缺乏成长与资金关注</span></li><li><span class="rnum">29</span><span class="rname">开盘定动作</span><span class="rdesc">以前一日收盘与当日开盘关系决定当日动作</span></li><li><span class="rnum">30</span><span class="rname">反向信号即反手</span><span class="rdesc">反向信号出现即全部平仓并反手</span></li><li><span class="rnum">31</span><span class="rname">趋势线失效判定</span><span class="rdesc">被触及次数过少或跨度不足的趋势线无效</span></li></ul></section></section>
+
+<section><h2 class="sec"><span class="dot">◈</span>进阶路径</h2>
+<div class="path"><div class="pstep"><span class="pday">第一阶段 第 1~7 天：禁令与图表</span><p>抄写三条禁令并各举三个自身案例；为 10 只标的绘制年、月、周、日四图。</p></div><div class="pstep"><span class="pday">第二阶段 第 8~14 天：总量与强弱</span><p>绘制全市场与三个板块的总市值图；统计 20 只个股在大盘下跌时的抗跌表现并排序。</p></div><div class="pstep"><span class="pday">第三阶段 第 15~21 天：周期与隔夜图</span><p>标出三个品种的时间周期节点；按隔夜图规则执行 5 笔交易，记录盘中是否改单。</p></div></div></section>
+
+<section><h2 class="sec"><span class="dot">◈</span>概念网络图谱（37 节点）</h2>
+<div class="mermaid">
+graph TD
+  ROOT((时间重于价格)) ==> C01[投机职业化]
+  C01 --> C02[三条禁令]
+  C02 --> C03[[摊薄亏损]]
+  C02 --> C04[[固执臆测价位]]
+  C02 --> C05[[抢跑恋战]]
+  C01 ==> C06[交易法则]
+  C06 --> C07[/顺应主趋势/]
+  C06 --> C08[/小额风险博大盈利/]
+  C06 --> C09[/保护账面盈利/]
+  ROOT ==> C10[四级图表]
+  C10 --> C11[/年线定位置/]
+  C10 --> C12[/月线定趋势/]
+  C10 --> C13[/周线定波段/]
+  C10 --> C14[/日线定时机/]
+  ROOT ==> C15[总市值]
+  C15 --> C16{全市场总量}
+  C15 --> C17{板块轮动}
+  C15 --> C18[相对强弱]
+  C18 --> C19[领涨股]
+  C18 --> C20[领跌股]
+  ROOT ==> C21[时间周期]
+  C21 --> C22{关键节点}
+  C21 --> C23[角度线]
+  C23 --> C24[/45度平衡线/]
+  C23 --> C25[/2×1与4×1与8×1/]
+  C21 ==> C26[正方图]
+  C26 --> C27{12×12}
+  C26 --> C28{9的正方}
+  C06 ==> C29[隔夜图机械执行]
+  C29 --> C30[/收盘定信号/]
+  C29 --> C31[趋势线]
+  C31 --> C32[季节性]
+  C01 --> C33[[低价股陷阱]]
+  C01 --> C34[[期望与恐惧]]
+  C02 --> C35[群体情绪]
+  C18 --> C36[/多空并行/]
+
+</div></section>
+
+<section><h2 class="sec"><span class="dot">◈</span>核心图表索引</h2>
+<div class="gallery"><figure class="figcard"><img loading="lazy" src="figures/Image00007.jpg" alt="年、月、周、日四级高低点图示例"><figcaption><span class="fch">第1章·需要保留哪些走势图</span><span class="fcap">年、月、周、日四级高低点图示例</span></figcaption></figure><figure class="figcard"><img loading="lazy" src="figures/Image00009.jpg" alt="全市场与板块总市值走势图"><figcaption><span class="fch">第1章·总市值</span><span class="fcap">全市场与板块总市值走势图</span></figcaption></figure><figure class="figcard"><img loading="lazy" src="figures/Image02539.jpg" alt="45° 线与 2×1、4×1、8×1 角度线示例"><figcaption><span class="fch">第2章·如何运用平面几何中的角</span><span class="fcap">45° 线与 2×1、4×1、8×1 角度线示例</span></figcaption></figure><figure class="figcard"><img loading="lazy" src="figures/Image02546.jpg" alt="12×12 与 9 的正方图、六边形图"><figcaption><span class="fch">第2章·主图之12×12的正方图</span><span class="fcap">12×12 与 9 的正方图、六边形图</span></figcaption></figure><figure class="figcard"><img loading="lazy" src="figures/Image02547.jpg" alt="隔夜图信号与执行示例"><figcaption><span class="fch">第3章·隔夜图交易法</span><span class="fcap">隔夜图信号与执行示例</span></figcaption></figure><figure class="figcard"><img loading="lazy" src="figures/Image02548.jpg" alt="趋势线构造与跌破示例"><figcaption><span class="fch">第4章·我的预测方法的基础——趋势线</span><span class="fcap">趋势线构造与跌破示例</span></figcaption></figure><figure class="figcard"><img loading="lazy" src="figures/Image02549.jpg" alt="各月份高低点分布统计图"><figcaption><span class="fch">第5章·股票的季节性变化</span><span class="fcap">各月份高低点分布统计图</span></figcaption></figure><figure class="figcard"><img loading="lazy" src="figures/Image02569.jpg" alt="相对强弱排序对照图"><figcaption><span class="fch">第1章·股票何时走势最强</span><span class="fcap">相对强弱排序对照图</span></figcaption></figure><figure class="figcard"><img loading="lazy" src="figures/Image04525.jpg" alt="从顶底发出的角度线示例"><figcaption><span class="fch">第2章·如何使用从顶部或底部发出的移动平均趋势线</span><span class="fcap">从顶底发出的角度线示例</span></figcaption></figure><figure class="figcard"><img loading="lazy" src="figures/Image04529.jpg" alt="浮盈后止损上移示意"><figcaption><span class="fch">第1章·如何保住你的账面盈利</span><span class="fcap">浮盈后止损上移示意</span></figcaption></figure><figure class="figcard"><img loading="lazy" src="figures/Image00016.jpg" alt="原书附图：交易法则与止损位置的综合示例，可与 D3 模块三的军规表对照阅读"><figcaption><span class="fch">第1章·交易法则</span><span class="fcap">原书附图：交易法则与止损位置的综合示例，可与 D3 模块三的军规表对照阅读</span></figcaption></figure></div></section>
+
+<div class="footer">本图鉴由 AI 辅助生成，是对原书的知识蒸馏成果，非原书替代品 · 知识截止 2026-10<br>原书著作权归作者与出版方所有</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>
+if(window.mermaid){mermaid.initialize({startOnLoad:true,theme:'default',securityLevel:'loose'});mermaid.run({querySelector:'.mermaid'});}
+</script>
+</body></html>

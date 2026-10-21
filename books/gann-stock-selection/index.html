@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>江恩选股方略 · 蒸馏图鉴</title>
+<style>
+:root{--bg:#f7f8fb;--panel:#fff;--panel2:#f2f4f9;--line:#e2e6ef;--ink:#1b2233;--dim:#5d6880;--gold:#b8860b;--green:#1f8a5f;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,"Segoe UI","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);line-height:1.75}
+.wrap{max-width:1180px;margin:0 auto;padding:24px}
+header.hero{text-align:center;padding:52px 20px 38px;background:linear-gradient(160deg,#fff 0%,#eef1f8 100%);border-radius:18px;border:1px solid var(--line);margin-bottom:24px}
+header.hero .kicker{color:var(--gold);letter-spacing:4px;font-size:12px;margin-bottom:12px}
+header.hero h1{font-size:32px;font-weight:800;letter-spacing:1px}
+header.hero .sub{color:var(--dim);margin-top:12px;font-size:15px}
+header.hero .meta{color:var(--dim);margin-top:16px;font-size:13px}
+section{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:26px;margin-bottom:22px}
+h2.sec{font-size:21px;font-weight:700;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+h2.sec .dot{color:var(--gold);margin-right:8px}
+.metrics{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.metric{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:16px;text-align:center}
+.metric .mk{font-size:12px;color:var(--dim)}
+.metric .mv{font-size:24px;font-weight:800;margin:6px 0 2px;color:var(--green)}
+.metric .md{font-size:11px;color:var(--dim)}
+.pillars{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:18px}
+.pillar{background:var(--panel2);border-left:3px solid var(--gold);border-radius:10px;padding:16px}
+.pillar h4{font-size:15px;margin-bottom:6px}
+.pillar p{font-size:13px;color:var(--dim)}
+.models{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.mcard{background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:20px}
+.mhead{display:flex;align-items:baseline;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.mnum{color:var(--gold);font-weight:700;font-size:12px}
+.mhead h3{font-size:17px}
+.msub{color:var(--dim);font-size:12px;margin-left:auto}
+.mdef{font-size:14px;margin-bottom:8px}
+.mmech{font-size:13px;color:var(--dim);margin-bottom:10px}
+.manchor{font-size:12px;color:var(--gold)}
+.rgroup h4{font-size:15px;color:var(--gold);margin:16px 0 10px}
+.rlist{list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.rlist li{background:var(--panel2);border-radius:8px;padding:10px 14px;display:flex;gap:10px;font-size:13px}
+.rnum{color:var(--gold);font-weight:700;min-width:20px}
+.rname{font-weight:600;white-space:nowrap}
+.rdesc{color:var(--dim)}
+.path{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.pstep{background:var(--panel2);border-radius:14px;padding:18px;border-top:3px solid var(--gold)}
+.pday{color:var(--gold);font-weight:700;font-size:13px}
+.pstep p{font-size:13px;color:var(--dim);margin-top:6px}
+.mermaid{background:#fbfcfe;border:1px solid var(--line);border-radius:12px;padding:20px;overflow-x:auto}
+.mermaid svg{max-width:100%;height:auto}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.figcard{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:10px;margin:0}
+.figcard img{width:100%;display:block;border-radius:6px;background:#fff}
+.fch{display:block;color:var(--gold);font-size:12px;margin-bottom:4px}
+.fcap{color:var(--dim);font-size:12px}
+.footer{text-align:center;color:var(--dim);font-size:12px;padding:22px}
+.dim{color:var(--dim);font-size:13px}
+@media(max-width:820px){.metrics{grid-template-columns:repeat(2,1fr)}.models,.pillars,.path,.gallery,.rlist{grid-template-columns:1fr}}
+
+/* ---- 站点注入：返回书架（浮动
+<a class="backlib" href="../../index.html" title="返回书架" aria-label="返回书架">←</a>
+按钮） ---- */
+.backlib{position:fixed;top:14px;left:14px;z-index:9999;width:34px;height:34px;display:grid;
+  place-items:center;border-radius:50%;border:1px solid rgba(0,0,0,.10);background:rgba(255,255,255,.88);
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:#5d6880;font-size:15px;line-height:1;
+  text-decoration:none;box-shadow:0 2px 10px rgba(0,0,0,.07);transition:.18s}
+.backlib:hover{color:#1b2233;background:#fff;transform:translateX(-1px)}
+@media print{.backlib{display:none}}
+</style></head><body><div class="wrap">
+<header class="hero">
+<div class="kicker">KNOWLEDGE DISTILLATION ATLAS</div>
+<h1>江恩选股方略 · 蒸馏图鉴</h1>
+<div class="sub">用图表、交易规则与选股方略回顾并预判股市</div>
+<div class="meta">威廉·D·江恩（William D. Gann） 著 ｜ 华尔街经典译丛 05 · 地震出版社 ｜ 原书 137,057 字 · 共 9 章</div>
+</header>
+
+<section><h2 class="sec"><span class="dot">◈</span>蒸馏质量指标</h2>
+<div class="metrics"><div class="metric"><div class="mk">DR 蒸馏比</div><div class="mv">2.8%</div><div class="md">M 档 1.5%~4%</div></div><div class="metric"><div class="mk">PC 命题覆盖率</div><div class="mv">1.00</div><div class="md">硬门 ≥ 0.95</div></div><div class="metric"><div class="mk">AR 锚点率</div><div class="mv">1.00</div><div class="md">硬门 ≥ 0.95</div></div><div class="metric"><div class="mk">SF 结构保真</div><div class="mv">0.99</div><div class="md">硬门 ≥ 0.85</div></div><div class="metric"><div class="mk">QS 质量分</div><div class="mv">100</div><div class="md">硬门 ≥ 95</div></div></div>
+<div class="pillars"><div class="pillar"><h4>支柱一 · 规则先行</h4><p>24 条交易规则 · 资金与止损｜规则不是建议，是准入条件</p></div><div class="pillar"><h4>支柱二 · 四级图表</h4><p>年线 · 月线 · 周线 · 日线｜不同尺度回答不同问题</p></div><div class="pillar"><h4>支柱三 · 选股三信号</h4><p>突破多年高点 · 放量转强 · 窄幅缩量｜只买已被市场证明的强势</p></div><div class="pillar"><h4>支柱四 · 周期与龙头</h4><p>周期耗尽 · 领涨股时点｜周期定位置，龙头定标的</p></div></div></section>
+
+<section><h2 class="sec"><span class="dot">◈</span>核心思维模型</h2>
+<div class="models"><article class="mcard"><div class="mhead"><span class="mnum">模型1</span><h3>24 条规则模型</h3><span class="msub">资金、买卖点、加仓的三组约束</span></div><p class="mdef">以 24 条规则构成选股与交易的完整约束集，分为资金风险、买卖点、加仓持仓三组，每组均给出可执行阈值。</p><p class="mmech">规则的价值在于把「判断」前置。资金组规定单笔上限与止损位置，使错误可承受；买卖点组把入场绑定在突破与放量两类客观信号上，排除主观估值；加仓组规定只在突破阻力后加码且递减，使加仓成为浮盈的再分配而非风险的放大。三组互相咬合：没有资金约束，买卖点再准也会被一次重仓击穿；没有加仓纪律，正确判断也只能获得平</p><div class="manchor">原书锚点：24 条规则覆盖资金、买卖点与加仓（第2章·24 条始终可靠的交易规则）</div></article><article class="mcard"><div class="mhead"><span class="mnum">模型2</span><h3>突破历史高点模型</h3><span class="msub">筹码真空与不回头的强势</span></div><p class="mdef">当股票穿越多年前形成的最高价时，上方已无历史套牢盘，进入筹码真空区，往往呈现不回头的强势。</p><p class="mmech">历史最高价是全部历史买家的成本上限。价格在其下方运行时，任何上涨都要面对解套抛压；一旦穿越，所有历史持仓转为盈利，抛压骤减，同时空头被迫回补，形成自我强化的上涨。江恩特别指出，这类突破后的走势「甚至不会发生回调」，因为没有任何一方有动机在盈利区卖出。</p><div class="manchor">原书锚点：穿越多年前最高价即为强势形态（第5章·成功选择股票的方法）</div></article><article class="mcard"><div class="mhead"><span class="mnum">模型3</span><h3>四级图表模型</h3><span class="msub">年、月、周、日的层级分工</span></div><p class="mdef">以年线判断历史位置、月线判断主趋势、周线判断波段、日线判断时机，四级各有分工且不可越权。</p><p class="mmech">年线回答「这只股票在历史上的位置」——是否处于历史新高区、是否处于长期底部；月线回答「主趋势方向」；周线回答「当前处于第几次回调」；日线只在活跃行情中回答「今天是否扣扳机」。层级越高的图表，结论越稳定；用日线推翻月线，等于用噪音否定信号。</p><div class="manchor">原书锚点：四级图表分别承担历史位置、主趋势、波段与时机（第4章·不同时间周期的表与趋势变化）</div></article><article class="mcard"><div class="mhead"><span class="mnum">模型4</span><h3>周期与位置模型</h3><span class="msub">繁荣末期的四个特征</span></div><p class="mdef">以周期长度、总市值、成交量与利率水平判断市场处于繁荣、衰退、萧条还是复苏，并识别繁荣末期的特征。</p><p class="mmech">繁荣末期的特征具有高度重复性：成交量放大而涨幅收窄，说明买盘在承接抛压但已无力推高；领涨股开始滞涨，说明最强的一批资金已在撤退；公众参与度达到顶点，说明最后的接盘力量已经入场。这三个特征同时出现时，周期往往已接近耗尽。</p><div class="manchor">原书锚点：以周期长度与总量指标判断市场整体位置（第8章·股市的未来表现）</div></article><article class="mcard"><div class="mhead"><span class="mnum">模型5</span><h3>领涨股时点模型</h3><span class="msub">早期与后期领涨股的区分</span></div><p class="mdef">早期领涨股在大盘见底前率先止跌蓄势并第一个突破；后期领涨股在大盘上涨中后段才启动，涨幅快但持续性差。</p><p class="mmech">早期领涨股的强势来自主力在低迷期的持续吸筹，因此大盘一转暖就能立刻拉升；后期领涨股的强势来自情绪扩散，资金是追涨而非建仓，因此一旦情绪退潮就迅速回落。区分二者的方法是看启动时点与蓄势时长：蓄势越久、启动越早，持续性越强。</p><div class="manchor">原书锚点：早期领涨股先止跌先突破，后期领涨股涨幅快但持续性差（第7章·如何挑选早期的领涨股）</div></article></div></section>
+
+<section><h2 class="sec"><span class="dot">◈</span>核心规则速查</h2>
+<section class="rgroup"><h4>类别一 · 资金与风险</h4><ul class="rlist"><li><span class="rnum">1</span><span class="rname">单笔上限</span><span class="rdesc">单次投入不超本金固定比例</span></li><li><span class="rnum">2</span><span class="rname">预设止损</span><span class="rdesc">入场即挂，绝不撤销</span></li><li><span class="rnum">3</span><span class="rname">亏损减量</span><span class="rdesc">连亏后减小交易单位，不加倍</span></li></ul></section><section class="rgroup"><h4>类别二 · 买卖点</h4><ul class="rlist"><li><span class="rnum">4</span><span class="rname">不因价低而买</span><span class="rdesc">低价必有低价的原因</span></li><li><span class="rnum">5</span><span class="rname">不因价高而卖</span><span class="rdesc">高价可更高，须看趋势</span></li><li><span class="rnum">6</span><span class="rname">不为分红而买</span><span class="rdesc">分红不改变趋势方向</span></li><li><span class="rnum">7</span><span class="rname">突破多年高点买入</span><span class="rdesc">上方无套牢盘，强势不回</span></li><li><span class="rnum">8</span><span class="rname">放量转强买入</span><span class="rdesc">突然活跃放量即领涨候选</span></li><li><span class="rnum">9</span><span class="rname">跌破派发区卖出</span><span class="rdesc">派发完成即趋势向下</span></li></ul></section><section class="rgroup"><h4>类别三 · 加仓与持仓</h4><ul class="rlist"><li><span class="rnum">10</span><span class="rname">不在错误时间加码</span><span class="rdesc">须等活跃并穿越阻力</span></li><li><span class="rnum">11</span><span class="rname">加仓递减</span><span class="rdesc">越涨越少买</span></li><li><span class="rnum">12</span><span class="rname">不急于新价位卖出</span><span class="rdesc">首次进入新价位即卖是错误</span></li><li><span class="rnum">13</span><span class="rname">定期复核</span><span class="rdesc">每月检查趋势与支撑</span></li></ul></section><section class="rgroup"><h4>类别四 · 观察信号</h4><ul class="rlist"><li><span class="rnum">14</span><span class="rname">窄幅缩量预警</span><span class="rdesc">连续窄幅低量预示变盘</span></li><li><span class="rnum">15</span><span class="rname">六七周见顶</span><span class="rdesc">快速上涨六七周接近摆动顶</span></li><li><span class="rnum">16</span><span class="rname">远离报价机</span><span class="rdesc">收市后分析，不盯盘</span></li></ul></section></section>
+
+<section><h2 class="sec"><span class="dot">◈</span>进阶路径</h2>
+<div class="path"><div class="pstep"><span class="pday">第一阶段 第 1~7 天：规则与图表</span><p>抄写 24 条规则并逐条举例；为 10 只标的绘制年线、月线、周线三图。</p></div><div class="pstep"><span class="pday">第二阶段 第 8~14 天：三类信号筛选</span><p>按突破多年高点、放量转强、窄幅缩量三类信号各筛出 3 只标的，记录后续一周表现。</p></div><div class="pstep"><span class="pday">第三阶段 第 15~21 天：执行与复盘</span><p>对筛出的标的按规则买入并挂止损，记录加仓与减仓决策，复盘命中率。</p></div></div></section>
+
+<section><h2 class="sec"><span class="dot">◈</span>概念网络图谱（29 节点）</h2>
+<div class="mermaid">
+graph TD
+  ROOT((趋势决定价值)) ==> C01[周期与位置]
+  ROOT ==> C02[24条规则]
+  C02 ==> C03[/资金上限/]
+  C02 ==> C04[/预设止损/]
+  C02 --> C05[买卖点判据]
+  C05 --> C06{不因价低而买}
+  C05 --> C07{不因价高而卖}
+  C05 --> C08{不为分红而买}
+  ROOT ==> C09[四级图表]
+  C09 --> C10[/年线定位置/]
+  C09 --> C11[/月线定趋势/]
+  C09 --> C12[/周线定波段/]
+  C09 --> C13[/日线定时机/]
+  ROOT ==> C14[选股三信号]
+  C14 --> C15{突破多年高点}
+  C14 --> C16{放量转强}
+  C14 --> C17{窄幅缩量}
+  C14 --> C18[领涨股识别]
+  C18 --> C19[早期领涨股]
+  C18 --> C20[后期领涨股]
+  C02 --> C21[加仓纪律]
+  C21 --> C22[/突破阻力才加码/]
+  C21 --> C23[[错误时间加码]]
+  C04 -.->|对立| C24[[无止损裸单]]
+  C01 --> C25[繁荣末期特征]
+  C25 ==> C26[周期耗尽]
+  C16 --> C27[成交量突变]
+  C17 --> C28[变盘前夜]
+
+</div></section>
+
+<section><h2 class="sec"><span class="dot">◈</span>核心图表索引</h2>
+<div class="gallery"><figure class="figcard"><img loading="lazy" src="figures/fig1_p023.jpg" alt="点，从1869年7月的最高点起算，下跌了100个点。此后开始的牛市行"><figcaption><span class="fch">原书页 p23</span><span class="fcap">点，从1869年7月的最高点起算，下跌了100个点。此后开始的牛市行</span></figcaption></figure><figure class="figcard"><img loading="lazy" src="figures/fig2_p055.jpg" alt="图2向我们展示了在一个区间内停留了20天、20个星期、20个月，"><figcaption><span class="fch">原书页 p55</span><span class="fcap">图2向我们展示了在一个区间内停留了20天、20个星期、20个月，</span></figcaption></figure><figure class="figcard"><img loading="lazy" src="figures/fig3_p129.jpg" alt="显示了美国钢铁自1901年3月28日在纽约股票交易所挂牌交易首日至1"><figcaption><span class="fch">原书页 p129</span><span class="fcap">显示了美国钢铁自1901年3月28日在纽约股票交易所挂牌交易首日至1</span></figcaption></figure><figure class="figcard"><img loading="lazy" src="figures/fig4_p087.jpg" alt="列出了在纽约证券交易所的1875～1929年的年成交总量。图4显示．"><figcaption><span class="fch">原书页 p87</span><span class="fcap">列出了在纽约证券交易所的1875～1929年的年成交总量。图4显示．</span></figcaption></figure><figure class="figcard"><img loading="lazy" src="figures/fig5_p093.jpg" alt="上可看到，在它突破了派发区间之后，便开始下跌并在其他股票上涨时继续走"><figcaption><span class="fch">原书页 p93</span><span class="fcap">上可看到，在它突破了派发区间之后，便开始下跌并在其他股票上涨时继续走</span></figcaption></figure><figure class="figcard"><img loading="lazy" src="figures/fig6_p182.jpg" alt="该股1916～1930年的最高点与最低点年线图表和1920～193"><figcaption><span class="fch">原书页 p182</span><span class="fcap">该股1916～1930年的最高点与最低点年线图表和1920～193</span></figcaption></figure><figure class="figcard"><img loading="lazy" src="figures/fig7_p146.jpg" alt="该股进行了很长一段时间的吸筹，但如果我们等到它穿越吸筹区间之后再"><figcaption><span class="fch">原书页 p146</span><span class="fcap">该股进行了很长一段时间的吸筹，但如果我们等到它穿越吸筹区间之后再</span></figcaption></figure><figure class="figcard"><img loading="lazy" src="figures/fig8_p170.jpg" alt="最高点与最低点年线的图表，它将向我们显示出这只股票多年来是如何进行吸"><figcaption><span class="fch">原书页 p170</span><span class="fcap">最高点与最低点年线的图表，它将向我们显示出这只股票多年来是如何进行吸</span></figcaption></figure><figure class="figcard"><img loading="lazy" src="figures/fig9_p116.jpg" alt="记录了多年以来的货币利率，向我们显示了短期借款利率的高低分别意味着什"><figcaption><span class="fch">原书页 p116</span><span class="fcap">记录了多年以来的货币利率，向我们显示了短期借款利率的高低分别意味着什</span></figcaption></figure><figure class="figcard"><img loading="lazy" src="figures/fig10_p076.jpg" alt="艾奇逊(Atchison)、纽约中央().Y.Central)以"><figcaption><span class="fch">原书页 p76</span><span class="fcap">艾奇逊(Atchison)、纽约中央().Y.Central)以</span></figcaption></figure><figure class="figcard"><img loading="lazy" src="figures/fig11_p127.jpg" alt="该股1895～1930年的最高点与最低点年线图表是非常重要的。189"><figcaption><span class="fch">原书页 p127</span><span class="fcap">该股1895～1930年的最高点与最低点年线图表是非常重要的。189</span></figcaption></figure><figure class="figcard"><img loading="lazy" src="figures/fig12_p150.jpg" alt="中，该股先是形成了一个尖顶；随后下跌到了275点；接下来反弹到了28"><figcaption><span class="fch">原书页 p150</span><span class="fcap">中，该股先是形成了一个尖顶；随后下跌到了275点；接下来反弹到了28</span></figcaption></figure><figure class="figcard"><img loading="lazy" src="figures/fig13_p187.jpg" alt="伍尔沃斯(W001w(H-h)一一在1921～1929年的牛市行"><figcaption><span class="fch">原书页 p187</span><span class="fcap">伍尔沃斯(W001w(H-h)一一在1921～1929年的牛市行</span></figcaption></figure><figure class="figcard"><img loading="lazy" src="figures/fig14_p159.jpg" alt="1925年4月，穿越了1922年的最高价21点，这是一个应该买进"><figcaption><span class="fch">原书页 p159</span><span class="fcap">1925年4月，穿越了1922年的最高价21点，这是一个应该买进</span></figcaption></figure><figure class="figcard"><img loading="lazy" src="figures/fig15_p174.jpg" alt="到了86点并且此后连续4个月都在这个价位水平形成了底部，表明该股在此"><figcaption><span class="fch">原书页 p174</span><span class="fcap">到了86点并且此后连续4个月都在这个价位水平形成了底部，表明该股在此</span></figcaption></figure><figure class="figcard"><img loading="lazy" src="figures/fig16_p189.jpg" alt="弹到了53点，11月，下跌到了42点；1923年4月，上涨到了69点"><figcaption><span class="fch">原书页 p189</span><span class="fcap">弹到了53点，11月，下跌到了42点；1923年4月，上涨到了69点</span></figcaption></figure><figure class="figcard"><img loading="lazy" src="figures/fig17_p190.jpg" alt="177·"><figcaption><span class="fch">原书页 p190</span><span class="fcap">177·</span></figcaption></figure><figure class="figcard"><img loading="lazy" src="figures/fig18_p195.jpg" alt="我建议从8美元开始一路向上买进莱特航空。寇蒂斯公司和莱特航空合并"><figcaption><span class="fch">原书页 p195</span><span class="fcap">我建议从8美元开始一路向上买进莱特航空。寇蒂斯公司和莱特航空合并</span></figcaption></figure><figure class="figcard"><img loading="lazy" src="figures/fig19_p195.jpg" alt="福克航空（FokkerAircraft）一一该公司由通用汽车公司"><figcaption><span class="fch">原书页 p195</span><span class="fcap">福克航空（FokkerAircraft）一一该公司由通用汽车公司</span></figcaption></figure><figure class="figcard"><img loading="lazy" src="figures/fig1229228_p151.jpg" alt="8一28027226826025625224823623222021"><figcaption><span class="fch">原书页 p151</span><span class="fcap">8一28027226826025625224823623222021</span></figcaption></figure></div></section>
+
+<div class="footer">本图鉴由 AI 辅助生成，是对原书的知识蒸馏成果，非原书替代品 · 知识截止 2026-10<br>原书著作权归作者与出版方所有</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>
+if(window.mermaid){mermaid.initialize({startOnLoad:true,theme:'default',securityLevel:'loose'});mermaid.run({querySelector:'.mermaid'});}
+</script>
+</body></html>
