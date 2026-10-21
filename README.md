@@ -1,101 +1,114 @@
-# 蒸馏图书馆 · Library-To-Distillation
+# Library-To-Distillation
 
-把书籍蒸馏成果（精华 / 图谱 / 行动 / 图鉴）组织成一个纯静态小站。
-零构建依赖、零外部 CDN、零服务端代码 —— 丢进任意静态托管就能跑。
+> 中文版：[README.zh-CN.md](./README.zh-CN.md)
 
-> 每本书拆成四层产物：**D1 精华**（骨架 + 命题）、**D3 行动**（SOP + 清单）、
-> **D5 图谱**（概念关系）、**附录**（可检索形态表）。所有页面单文件、图片内联、离线可开。
+A pure-static site that turns book-distillation outputs (essence / concept map / action SOP / atlas)
+into a browsable library. Zero build step, zero external CDN, zero server-side code — drop it on any
+static host and it just works.
 
-## 在线访问
+> Each book is distilled into four artifacts: **D1 Essence** (skeleton + propositions),
+> **D3 Action** (SOP + checklists), **D5 Map** (concept graph), and an **Appendix** (searchable
+> pattern table). Every page is a self-contained single file with inlined images — works offline.
 
-- GitHub Pages：<https://yinuxy.github.io/Library-To-Distillation/>
+## Live Site
 
-## 目录结构
+- GitHub Pages: <https://yinuxy.github.io/Library-To-Distillation/>
+
+## One-Click Deploy
+
+Click a button to deploy this repository to the platform of your choice. The site is pure static
+files living in the repo root — **no build command, no output directory** needed.
+
+[![Deploy to GitHub Pages](https://img.shields.io/badge/Deploy-GitHub_Pages-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/yinuxy/Library-To-Distillation/settings/pages)
+[![Deploy to Vercel](https://img.shields.io/badge/Deploy-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fyinuxy%2FLibrary-To-Distillation)
+[![Deploy to Netlify](https://img.shields.io/badge/Deploy-Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white)](https://app.netlify.com/start/deploy?repository=https%3A%2F%2Fgithub.com%2Fyinuxy%2FLibrary-To-Distillation)
+[![Deploy to Cloudflare Pages](https://img.shields.io/badge/Deploy-Cloudflare_Pages-F38020?style=for-the-badge&logo=cloudflare&logoColor=white)](https://dash.cloudflare.com/?to=/:account/pages/create)
+[![Deploy to Render](https://img.shields.io/badge/Deploy-Render-46E3B7?style=for-the-badge&logo=render&logoColor=black)](https://render.com/deploy?repo=https://github.com/yinuxy/Library-To-Distillation)
+
+> After clicking, authorize the platform to read this repo and deploy from the repository root.
+> For Vercel / Netlify / Render the button above deep-links straight into a new deployment of this repo.
+
+## Hosting Platforms
+
+All of the following can connect to this GitHub repository, build automatically, and serve over
+HTTPS. Free tiers are more than enough for personal / documentation sites:
+
+| Platform | Free tier (2026) | Highlight |
+|---|---|---|
+| **GitHub Pages** | 1 GB storage · 100 GB/mo bandwidth (soft) | Native GitHub integration, zero third party |
+| **Cloudflare Pages** | **Unlimited bandwidth** · 500 builds/mo · 100 projects | Unlimited bandwidth, 300+ PoP CDN, China-friendly |
+| **Vercel** | 100 GB/mo · 6000 build-min/mo | Great frontend DX, preview deploys |
+| **Netlify** | 100 GB/mo · 300 build-min/mo | Drag-drop, forms, serverless functions |
+| **Render** | 750 instance-hours/mo | Static plus a small backend if needed |
+| **Firebase Hosting** | 10 GB storage · 360 MB/day transfer | Google ecosystem |
+| **Surge.sh** | Unlimited publishes | Pure CLI, one command |
+
+> Free tiers change over time — check each provider's site. Pick **Cloudflare Pages** if most of your
+> readers are in China; stay on **GitHub Pages** for the simplest setup.
+
+## Project Layout
 
 ```
 .
-├── index.html                      # 目录主页（书目数据已内联，双击可开）
-├── catalog.json                    # ★ 唯一数据源：站点信息 + 书目清单
-├── build_catalog.py                # 构建：注入书目 / 生成 sitemap+robots / 校验链接
-├── patch_book_page.py              # 给书籍详情页注入「返回书架」按钮（幂等）
-├── serve.py                        # 本地预览服务器
-├── 404.html                        # 404 页（返回路径随 base_url 自动同步）
-├── robots.txt                      # Sitemap 随构建自动更新
-├── sitemap.xml                     # 随构建自动生成
+├── index.html                      # Catalog homepage (data inlined, works from file://)
+├── catalog.json                    # ★ single source of truth: site + book list
+├── build_catalog.py                # injects catalog, generates sitemap/robots, validates links
+├── patch_book_page.py              # injects "back to library" button into book pages (idempotent)
+├── serve.py                        # local preview server
+├── 404.html                        # 404 page (return path syncs with base_url)
+├── robots.txt                      # Sitemap line auto-updated on build
+├── sitemap.xml                     # auto-generated on build
 ├── books/
 │   └── japanese-candlestick/
-│       └── index.html              # 书籍详情页（单文件，84 张图全内联）
+│       └── index.html              # book page (single file, 84 images inlined)
 └── downloads/
-    └── japanese-candlestick/       # 该书可下载的 .md 蒸馏稿
+    └── japanese-candlestick/       # downloadable .md distillation drafts
 ```
 
-## 能把这个仓库直接展示成 Pages 的托管平台
+## Adding a New Book
 
-以下平台都能连接 GitHub 仓库、自动构建并输出 HTTPS 站点，免费额度对个人/文档站绰绰有余：
-
-| 平台 | 免费额度（2026） | 亮点 | 接入方式 |
-|---|---|---|---|
-| **GitHub Pages** | 1 GB 存储 · 100 GB/月带宽（软限） | 与仓库原生集成、零第三方、公开仓库完全免费 | 仓库 Settings → Pages 选分支即可 |
-| **Cloudflare Pages** | **无限带宽** · 500 构建/月 · 100 项目 | 无限带宽、全球 300+ 节点、国内访问友好 | 连 GitHub 仓库，选「无框架/静态」 |
-| **Vercel** | 100 GB/月 · 6000 构建分钟/月 | 前端框架生态好、预览部署、自动 HTTPS | Import Git Repository |
-| **Netlify** | 100 GB/月 · 300 构建分钟/月 | 支持拖拽上传、表单、Serverless 函数 | 连 GitHub 或直接拖目录 |
-| **Render** | 750 实例小时/月 | 静态站之外还能跑小后端 | 连 GitHub，选 Static Site |
-| **Firebase Hosting** | 10 GB 存储 · 360 MB/天传输 | 与 Google 生态打通 | CLI 或连仓库 |
-| **Surge.sh** | 无限发布次数 | 纯命令行一条命令上线 | `npx surge ./` |
-
-> 免费额度会调整，以各平台官网为准。个人/文档站这七个都够用；
-> 看重国内访问速度选 Cloudflare Pages，最省事就留在 GitHub Pages。
-
-### 接入通用三步（以本仓库为例）
-
-1. 授权平台读取本仓库（OAuth）；
-2. 构建命令留空、**输出目录留空**（站点文件就在仓库根目录）；
-3. 部署完成后访问平台给的域名。
-
-> 本仓库是纯静态文件，**无需任何构建步骤**，直接发布仓库根目录即可。
-
-## 新增一本书
-
-1. 详情页放到 `books/<新书 id>/index.html`，蒸馏稿放到 `downloads/<新书 id>/`。
-2. 在 `catalog.json` 的 `books` 数组追加一条（字段见下方）。
-3. 重新构建并提交：
+1. Put the detail page at `books/<book-id>/index.html` and its drafts under `downloads/<book-id>/`.
+2. Append one entry to the `books` array in `catalog.json` (fields below).
+3. Rebuild and commit:
 
 ```bash
-python build_catalog.py            # 注入书目 + 生成 sitemap/robots + 同步 404 路径
-python patch_book_page.py          # 给新页面补「返回书架」按钮（可重复执行）
-python build_catalog.py --check    # 确认同步
+python build_catalog.py            # inject catalog + regenerate sitemap/robots + sync 404 path
+python patch_book_page.py          # add "back to library" button to the new page (idempotent)
+python build_catalog.py --check    # verify index.html is in sync
 git add -A && git commit -m "add book <id>" && git push
 ```
 
-### 书目字段速查
+### Book fields
 
-| 字段 | 必填 | 说明 |
+| Field | Required | Description |
 |---|---|---|
-| `id` / `path` | 是 | 唯一标识 / 站点内相对目录（`books/<id>/`） |
-| `no` / `title` / `author` | 是 | 编号 / 书名 / 作者 |
-| `tags` / `category` | 否 | 标签与分类（分类自动成为筛选 chip） |
-| `keywords` | 否 | 书内概念词，用于站内搜索穿透到详情页内容 |
-| `stats` | 否 | 书卡上的 3–4 个关键数字 |
-| `outputs` | 否 | 下载按钮，`file` 为站点内相对路径 |
-| `cover_bg` / `cover_fg` | 否 | 书封渐变与文字色，不给用默认墨色 |
-| `meta.distilled` | 否 | `YYYY-MM`，首页「最近更新」取最大值 |
+| `id` / `path` | yes | unique id / relative dir (`books/<id>/`) |
+| `no` / `title` / `author` | yes | order number / title / author |
+| `tags` / `category` | no | tags and category (category becomes a filter chip) |
+| `keywords` | no | in-book terms so search reaches detail-page content |
+| `stats` | no | 3–4 key numbers shown on the book card |
+| `outputs` | no | download buttons; `file` is a site-relative path |
+| `cover_bg` / `cover_fg` | no | cover gradient and text color (defaults provided) |
+| `meta.distilled` | no | `YYYY-MM`; homepage "last updated" takes the max |
 
-## 本地预览
+## Local Preview
 
 ```bash
 python serve.py                # → http://127.0.0.1:8000
-python serve.py --lan          # 手机同网段访问
+python serve.py --lan          # accessible from your phone on the same LAN
 ```
 
-也可以直接双击 `index.html`：书目数据已内联，`file://` 下同样能看。
+You can also just double-click `index.html` — the catalog data is inlined, so it renders from `file://`.
 
-## 换域名 / 换平台
+## Changing Domain / Platform
 
-只需改 `catalog.json` 里的 `site.base_url`，重跑 `build_catalog.py`。
-sitemap、robots、404 页的返回路径都会自动同步（见「新增一本书」第 3 步）。
+Edit `site.base_url` in `catalog.json`, then re-run `build_catalog.py`. `sitemap.xml`, `robots.txt`,
+and the 404 return path all re-sync automatically (see step 3 under "Adding a New Book").
 
-## 说明
+## Notes
 
-- 配色：纸感底色 + 墨色文字 + 朱红强调，与书籍详情页同一套设计变量。
-- 书封：纯 CSS 生成（竖排书名 + 书脊压痕 + 微光边），书名过长自动缩字号。
-- 内容为 AI 辅助生成的知识蒸馏成果，用于学习研究，**非原书替代品**。
+- **Palette**: paper background + ink text + vermilion accent, shared with the book pages.
+- **Book cover**: pure CSS (vertical title + spine shadow + edge highlight); title font auto-shrinks
+  when too long.
+- Content is AI-assisted knowledge distillation for study and research — **not a substitute for the
+  original book**.
