@@ -1,0 +1,12 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# 本地预览/构建临时文件
+*.log
+
+# 系统垃圾
+.DS_Store
+Thumbs.db
+desktop.ini
